@@ -79,6 +79,18 @@ public class RPSLS extends Application
 				BackgroundSize.DEFAULT);
 
 		return new Background(woodBackground);
+		
+//		return new Background(
+//              Collections.singletonList(new BackgroundFill(
+//                      Color.WHITE, 
+//                      new CornerRadii(500), 
+//                      new Insets(10))),
+//              Collections.singletonList(new BackgroundImage(
+//                      new Image("https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg", 1000, 1000, false, true),
+//                      BackgroundRepeat.NO_REPEAT,
+//                      BackgroundRepeat.NO_REPEAT,
+//                      BackgroundPosition.CENTER,
+//                      BackgroundSize.DEFAULT)));
 	}
 
 	public static void main(String[] args)
