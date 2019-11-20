@@ -1,8 +1,15 @@
 package Classes;
+
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,25 +31,24 @@ public class RPSLS extends Application
 	public void start(Stage primaryStage) throws Exception
 	{
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
-		GridPane gridPane = createRegistrationFormPane();
-		gridPane.setBackground(getBackground());
-		addUIControls(gridPane);
+		GridPane gridPane = createGridPane();
 		Scene scene = new Scene(gridPane, 600, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
-	private GridPane createRegistrationFormPane()
+	private GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
 		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setHgap(10);
 		gridPane.setVgap(50);
-
+		gridPane.setBackground(getBackground());
+		addItems(gridPane);
 		return gridPane;
 	}
 
-	private void addUIControls(GridPane gridPane)
+	private void addItems(GridPane gridPane)
 	{
 		Label headerLabel = new Label("Welcome To");
 		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
@@ -50,7 +56,7 @@ public class RPSLS extends Application
 		gridPane.add(headerLabel, 0, 0);
 		GridPane.setHalignment(headerLabel, HPos.CENTER);
 		GridPane.setMargin(headerLabel, new Insets(-250, 0, 0, 0));
-		
+
 		Label nameLabel = new Label("Rock Paper Scissors Lizard Spock");
 		nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		nameLabel.setTextFill(Color.ANTIQUEWHITE);
@@ -61,36 +67,42 @@ public class RPSLS extends Application
 		Button playButton = new Button("Play");
 		playButton.setPrefHeight(80);
 		playButton.setPrefWidth(350);
+		playButton.setOnAction(openNewWindow());
 		gridPane.add(playButton, 0, 2);
 		GridPane.setHalignment(playButton, HPos.CENTER);
 
 		Button testButton = new Button("Test ");
 		testButton.setPrefHeight(80);
 		testButton.setPrefWidth(350);
+		testButton.setOnAction(openNewWindow());
 		gridPane.add(testButton, 0, 3);
 		GridPane.setHalignment(testButton, HPos.CENTER);
 	}
 
 	private Background getBackground()
 	{
-		BackgroundImage woodBackground = new BackgroundImage(new Image(
-				"https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg",
-				32, 32, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
-				BackgroundSize.DEFAULT);
+		BackgroundImage woodBackground = new BackgroundImage(
+				new Image("https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg",
+						32, 32, false, true),
+				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 		return new Background(woodBackground);
-		
-//		return new Background(
-//              Collections.singletonList(new BackgroundFill(
-//                      Color.WHITE, 
-//                      new CornerRadii(500), 
-//                      new Insets(10))),
-//              Collections.singletonList(new BackgroundImage(
-//                      new Image("https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg", 1000, 1000, false, true),
-//                      BackgroundRepeat.NO_REPEAT,
-//                      BackgroundRepeat.NO_REPEAT,
-//                      BackgroundPosition.CENTER,
-//                      BackgroundSize.DEFAULT)));
+
+	}
+
+	private EventHandler<ActionEvent> openNewWindow()
+	{
+		return new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				Stage stage = new Stage();
+				stage.setTitle("My New Stage Title");
+				stage.setScene(new Scene(new Button("click"), 450, 450));
+				stage.show();
+				((Node) event.getSource()).getScene().getWindow().hide();
+			}
+		};
 	}
 
 	public static void main(String[] args)
