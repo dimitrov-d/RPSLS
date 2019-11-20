@@ -1,7 +1,5 @@
 package Classes;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,7 +7,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,6 +29,7 @@ public class RPSLS extends Application
 	{
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
 		GridPane gridPane = createGridPane();
+		addItems(gridPane);
 		Scene scene = new Scene(gridPane, 600, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -44,7 +42,6 @@ public class RPSLS extends Application
 		gridPane.setHgap(10);
 		gridPane.setVgap(50);
 		gridPane.setBackground(getBackground());
-		addItems(gridPane);
 		return gridPane;
 	}
 
@@ -87,21 +84,17 @@ public class RPSLS extends Application
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 		return new Background(woodBackground);
-
 	}
 
 	private EventHandler<ActionEvent> openNewWindow()
 	{
-		return new EventHandler<ActionEvent>()
+		return event ->
 		{
-			public void handle(ActionEvent event)
-			{
-				Stage stage = new Stage();
-				stage.setTitle("My New Stage Title");
-				stage.setScene(new Scene(new Button("click"), 450, 450));
-				stage.show();
-				((Node) event.getSource()).getScene().getWindow().hide();
-			}
+			Stage stage = new Stage();
+			stage.setTitle("My New Stage Title");
+			stage.setScene(new Scene(new Button("click"), 450, 450));
+			stage.show();
+			((Node) event.getSource()).getScene().getWindow().hide();
 		};
 	}
 
@@ -109,5 +102,4 @@ public class RPSLS extends Application
 	{
 		launch(args);
 	}
-
 }
