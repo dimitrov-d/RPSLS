@@ -65,6 +65,7 @@ public class RPSLS extends Application
 		playButton.setPrefHeight(80);
 		playButton.setPrefWidth(350);
 		playButton.setOnAction(openNewWindow());
+		playButton.setStyle("-fx-font-size: 2em;");
 		gridPane.add(playButton, 0, 2);
 		GridPane.setHalignment(playButton, HPos.CENTER);
 
@@ -72,6 +73,7 @@ public class RPSLS extends Application
 		testButton.setPrefHeight(80);
 		testButton.setPrefWidth(350);
 		testButton.setOnAction(openNewWindow());
+		testButton.setStyle("-fx-font-size: 2em;");
 		gridPane.add(testButton, 0, 3);
 		GridPane.setHalignment(testButton, HPos.CENTER);
 	}
