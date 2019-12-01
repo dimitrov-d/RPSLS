@@ -24,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class JavaFX_Helper
 {
@@ -114,7 +115,6 @@ public class JavaFX_Helper
 					400, 550, false, true);
 			ImageView imageView = new ImageView(image);
 			gridPane.add(imageView, 0, 0);
-			
 			String instructions = getInstructions();
 			Label text = new Label(instructions);
 			text.setFont(Font.font("Arial",FontWeight.BOLD, 20));
@@ -130,10 +130,21 @@ public class JavaFX_Helper
 			
 			Scene scene = new Scene(gridPane, 988, 550);
 			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
-//			((Node) event.getSource()).getScene().getWindow().hide();
+			((Node) event.getSource()).getScene().getWindow().hide();
+			stage.setOnCloseRequest(closeWindowEvent());
+			
 		};
 	}
+	
+	protected EventHandler<WindowEvent> closeWindowEvent()
+	{
+		return event ->
+		{
+		RPSLS.showStartScreen(new Stage());
+		};
+    }
 	
 	private String getInstructions() {
 		return 
