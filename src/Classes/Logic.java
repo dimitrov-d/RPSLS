@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class Logic
 {
-	public enum Element
+	protected enum Element
 	{
 		ROCK, PAPER, SCISSORS, LIZARD, SPOCK
 	}
 
-	public static Element getRandomElement()
+	protected static Element getRandomElement()
 	{
 		return Element.values()[new Random().nextInt(Element.values().length)];
 	}
 
-	public static Element getWinner(Element el1, Element el2)
+	protected static Element getWinner(Element el1, Element el2)
 	{
 		switch (el1)
 		{
