@@ -28,7 +28,7 @@ import javafx.stage.WindowEvent;
 
 public class JavaFX_Helper
 {
-
+//TODO : Add EventHandlers to other class
 	protected GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
@@ -90,6 +90,27 @@ public class JavaFX_Helper
 
 		return new Background(woodBackground);
 	}
+	
+	protected void addInstructionWindowItems(GridPane gridPane) 
+	{
+		var image = new Image("https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
+				400, 550, false, true);
+		ImageView imageView = new ImageView(image);
+		gridPane.add(imageView, 0, 0);
+		String instructions = getInstructions();
+		Label text = new Label(instructions);
+		text.setFont(Font.font("Arial",FontWeight.BOLD, 20));
+		text.setTextFill(Color.rgb(95,197,185));
+		GridPane.setHalignment(text, HPos.CENTER);
+		GridPane.setMargin(text, new Insets(0, 0, 0, -10));
+		text.setTextAlignment(TextAlignment.CENTER);
+		text.setPrefHeight(600);
+		text.setStyle("-fx-line-spacing: 0.5em;");
+		text.setBackground(
+		new Background(new BackgroundFill(Color.rgb(20,19,60), CornerRadii.EMPTY, Insets.EMPTY)));
+		gridPane.add(text, 1, 0);
+		
+	}
 
 	protected EventHandler<ActionEvent> openNewWindow()
 	{
@@ -110,40 +131,19 @@ public class JavaFX_Helper
 			Stage stage = new Stage();
 			stage.setTitle("How to play");
 			GridPane gridPane = createGridPane();
-			
-			var image = new Image("https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
-					400, 550, false, true);
-			ImageView imageView = new ImageView(image);
-			gridPane.add(imageView, 0, 0);
-			String instructions = getInstructions();
-			Label text = new Label(instructions);
-			text.setFont(Font.font("Arial",FontWeight.BOLD, 20));
-			text.setTextFill(Color.rgb(95,197,185));
-			GridPane.setHalignment(text, HPos.CENTER);
-			GridPane.setMargin(text, new Insets(0, 0, 0, -10));
-			text.setTextAlignment(TextAlignment.CENTER);
-			text.setPrefHeight(600);
-			text.setStyle("-fx-line-spacing: 0.5em;");
-			text.setBackground(
-			new Background(new BackgroundFill(Color.rgb(20,19,60), CornerRadii.EMPTY, Insets.EMPTY)));
-			gridPane.add(text, 1, 0);
-			
 			Scene scene = new Scene(gridPane, 988, 550);
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
 			((Node) event.getSource()).getScene().getWindow().hide();
 			stage.setOnCloseRequest(closeWindowEvent());
-			
+			addInstructionWindowItems(gridPane);
 		};
 	}
 	
 	protected EventHandler<WindowEvent> closeWindowEvent()
 	{
-		return event ->
-		{
-		RPSLS.showStartScreen(new Stage());
-		};
+		return event -> RPSLS.showStartScreen(new Stage());
     }
 	
 	private String getInstructions() {
