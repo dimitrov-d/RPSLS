@@ -10,15 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class JavaFX_Helper
@@ -62,7 +66,7 @@ public class JavaFX_Helper
 		
 		Button howToPlay = makeButton("How to play ");
 		gridPane.add(howToPlay, 0, 4);
-		howToPlay.setOnAction(openNewWindow()); 
+		howToPlay.setOnAction(howToPlayWindow()); 
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
 	}
 	
@@ -92,9 +96,60 @@ public class JavaFX_Helper
 		{
 			Stage stage = new Stage();
 			stage.setTitle("My New Stage Title");
-			stage.setScene(new Scene(new Button("click"), 450, 450));
+			stage.setScene(new Scene(new Button("click"), 600, 700));
 			stage.show();
 			((Node) event.getSource()).getScene().getWindow().hide();
 		};
+	}
+	
+	protected EventHandler<ActionEvent> howToPlayWindow()
+	{
+		return event ->
+		{
+			Stage stage = new Stage();
+			stage.setTitle("How to play");
+			GridPane gridPane = createGridPane();
+			
+			var image = new Image("https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
+					400, 550, false, true);
+			ImageView imageView = new ImageView(image);
+			gridPane.add(imageView, 0, 0);
+			
+			String instructions = getInstructions();
+			Label text = new Label(instructions);
+			text.setFont(Font.font("Arial",FontWeight.BOLD, 20));
+			text.setTextFill(Color.rgb(95,197,185));
+			GridPane.setHalignment(text, HPos.CENTER);
+			GridPane.setMargin(text, new Insets(0, 0, 0, -10));
+			text.setTextAlignment(TextAlignment.CENTER);
+			text.setPrefHeight(600);
+			text.setStyle("-fx-line-spacing: 0.5em;");
+			text.setBackground(
+			new Background(new BackgroundFill(Color.rgb(20,19,60), CornerRadii.EMPTY, Insets.EMPTY)));
+			gridPane.add(text, 1, 0);
+			
+			Scene scene = new Scene(gridPane, 988, 550);
+			stage.setScene(scene);
+			stage.show();
+//			((Node) event.getSource()).getScene().getWindow().hide();
+		};
+	}
+	
+	private String getInstructions() {
+		return 
+		"The game is an extension of the game Rock, Paper, Scissors. \n" + 
+		"Every player picks an element. \n" + 
+		"The winner is the player who beats the other players. \n" +
+		"In case of a tie, the game repeats until we find a winner. \n \n" + 
+		"The rules of the game are as follows: \n" +
+		"- Scissors cuts Paper \n" +
+		"- Paper covers Rock \n" +
+		"- Rock crushes Lizard \n" +
+		"- Lizard poisons Spock\n" +
+		"- Spock smashes Scissors \n" +
+		"- Scissors decapitates Lizard \n" +
+		"- Paper disproves Spock \n" +
+		"- Spock vaporizes Rock \n" +
+		"- (and as it always has) Rock crushes Scissors \n";
 	}
 }
