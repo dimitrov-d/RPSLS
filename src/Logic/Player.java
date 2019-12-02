@@ -1,6 +1,6 @@
-package Classes;
+package Logic;
 
-import Classes.Logic.Element;
+import Logic.Logic.Element;
 
 public class Player
 {

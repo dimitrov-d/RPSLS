@@ -1,5 +1,6 @@
-package Classes;
+package Logic;
 
+import Helpers.JavaFX_Helper;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ public class RPSLS extends Application
 		showStartScreen(primaryStage);
 	}
 	
-	protected static void showStartScreen(Stage primaryStage) {
+	public static void showStartScreen(Stage primaryStage) {
 		
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
 		var helper = new JavaFX_Helper();
