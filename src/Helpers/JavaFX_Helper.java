@@ -22,7 +22,6 @@ import javafx.scene.text.TextAlignment;
 
 public class JavaFX_Helper
 {
-	EventHandlers eventHandler = new EventHandlers();
 	public GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
@@ -51,17 +50,17 @@ public class JavaFX_Helper
 
 		Button playButton = makeButton("Play");
 		gridPane.add(playButton, 0, 2);
-		playButton.setOnAction(eventHandler.openNewWindow());
+		playButton.setOnAction(new EventHandlers().openNewWindow());
 		GridPane.setHalignment(playButton, HPos.CENTER);
 
 		Button testButton = makeButton("Test ");
 		gridPane.add(testButton, 0, 3);
-		testButton.setOnAction(eventHandler.openNewWindow());
+		testButton.setOnAction(new EventHandlers().openNewWindow());
 		GridPane.setHalignment(testButton, HPos.CENTER);
 
 		Button howToPlay = makeButton("How to play ");
 		gridPane.add(howToPlay, 0, 4);
-		howToPlay.setOnAction(eventHandler.howToPlayWindow());
+		howToPlay.setOnAction(new EventHandlers().howToPlayWindow());
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
 	}
 
