@@ -1,5 +1,6 @@
 package Logic;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Logic
@@ -84,5 +85,15 @@ public class Logic
 		default:
 			return el1; // Tie
 		}
+	}
+
+	public static void main(String[] args)
+	{
+		Player[] players = new Player[5];
+		Arrays.asList(players).forEach(x ->
+		{
+			x = new Player();
+			System.out.println(x.element);
+		});
 	}
 }

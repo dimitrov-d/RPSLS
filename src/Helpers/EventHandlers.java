@@ -1,6 +1,6 @@
 package Helpers;
 
-import Logic.RPSLS;
+import Logic.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -47,6 +47,6 @@ public class EventHandlers
 
 	protected EventHandler<WindowEvent> closeWindowEvent()
 	{
-		return event -> RPSLS.showStartScreen(new Stage());
+		return event -> Main.showStartScreen(new Stage());
 	}
 }

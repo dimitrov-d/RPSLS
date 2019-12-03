@@ -1,18 +1,21 @@
 package Logic;
 
+
 import Logic.Logic.Element;
 
 public class Player
 {
-	protected Element element;
-	protected int score;
+	 Element element;
+	 int score;
 	
 	Player() {
 		element = Logic.getRandomElement();
 		score = 0;
 	}
 	
-	protected void incrementScore() {
+	public void incrementScore() {
 		score++;
 	}
+	
+		
 }
