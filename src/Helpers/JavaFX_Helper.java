@@ -1,10 +1,13 @@
 package Helpers;
 
+import java.util.Optional;
+
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -55,7 +58,7 @@ public class JavaFX_Helper
 
 		Button testButton = makeButton("Test ");
 		gridPane.add(testButton, 0, 3);
-		testButton.setOnAction(new EventHandlers().openNewWindow());
+		testButton.setOnAction(new EventHandlers().testWindow());
 		GridPane.setHalignment(testButton, HPos.CENTER);
 
 		Button howToPlay = makeButton("How to play ");
@@ -103,6 +106,21 @@ public class JavaFX_Helper
 		text.setBackground(new Background(new BackgroundFill(Color.rgb(20, 19, 60), CornerRadii.EMPTY, Insets.EMPTY)));
 		gridPane.add(text, 1, 0);
 
+	}
+	
+	protected void addTestWindowItems(GridPane gridPane) 
+	{
+		TextInputDialog dialog = new TextInputDialog("");
+		dialog.setTitle("Input");
+		dialog.setHeaderText("How many games should each player play?");
+		dialog.setContentText("Enter here:");
+
+		Optional<String> result = dialog.showAndWait();
+			result.ifPresent(games -> System.out.println("Number of games: " + games));
+		
+//		if (!newValue.matches("\\d*")) {
+//            textField.setText(newValue.replaceAll("[^\\d]", ""));
+//        }  For invalid inputs
 	}
 
 	private String getInstructions()

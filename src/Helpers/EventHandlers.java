@@ -44,6 +44,22 @@ public class EventHandlers
 			helper.addInstructionWindowItems(gridPane);
 		};
 	}
+	
+	protected EventHandler<ActionEvent> testWindow()
+	{
+		return event ->
+		{
+			Stage stage = new Stage();
+			stage.setTitle("Test Players");
+			GridPane gridPane = helper.createGridPane();
+			Scene scene = new Scene(gridPane, 600, 700);
+			stage.setScene(scene);
+			stage.show();
+			((Node) event.getSource()).getScene().getWindow().hide();
+			stage.setOnCloseRequest(closeWindowEvent());
+			helper.addTestWindowItems(gridPane);
+		};
+	}
 
 	protected EventHandler<WindowEvent> closeWindowEvent()
 	{
