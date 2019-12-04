@@ -89,11 +89,33 @@ public class Logic
 
 	public static void main(String[] args)
 	{
-		Player[] players = new Player[5];
-		Arrays.asList(players).forEach(x ->
+		int tie = 0;
+		Player[] player = new Player[5];
+		for (int i = 0; i < player.length; i++)
 		{
-			x = new Player();
-			System.out.println(x.element);
-		});
+			player[i] = new Player();
+		}
+
+		for (int i = 0; i < player.length; i++)
+		{
+			for (int j = 0; j < player.length; j++)
+			{
+				if (player[i].element == player[j].element)
+				{
+					if (i != j)
+						tie++;
+					continue;
+				}	
+
+				if (player[i].element == getWinner(player[i].element, player[j].element))
+					player[i].incrementScore();
+				else
+					player[j].incrementScore();
+
+			}
+		}
+
+		System.out.println("Ties: " + tie);
+		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
 	}
 }
