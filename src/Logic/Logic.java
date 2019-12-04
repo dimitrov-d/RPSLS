@@ -2,9 +2,11 @@ package Logic;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Logic
 {
+	static int ties = 0;
 	protected enum Element
 	{
 		ROCK, PAPER, SCISSORS, LIZARD, SPOCK
@@ -14,8 +16,12 @@ public class Logic
 	{
 		return Element.values()[new Random().nextInt(Element.values().length)];
 	}
+	
+	protected static void randomizePlayers(Player[] players) {
+		Arrays.asList(players).stream().forEach(p -> p.element = getRandomElement());
+	}
 
-	protected static Element getWinner(Element el1, Element el2)
+	protected static Element getWinnerElement(Element el1, Element el2)
 	{
 		switch (el1)
 		{
@@ -87,35 +93,47 @@ public class Logic
 		}
 	}
 
+	public static void getWinnerPlayer(Player p1, Player p2)
+	{
+		if (p1.element == p2.element) {
+			return;
+		}
+		
+
+		if (p1.element == getWinnerElement(p1.element, p2.element))
+			p1.incrementScore();
+		else
+			p2.incrementScore();
+	}
+	
+	public static void playGame(Player[] player) 
+	{
+		for (int i = 0; i < player.length; i++)
+		{
+			for (int j = 0; j < player.length; j++)
+			{
+				for (int z = 0; z < 5; z++)
+				{
+					if (player[i].element == player[j].element && i!=j)
+						ties++;
+					getWinnerPlayer(player[i],player[j]);
+					randomizePlayers(player);
+				}
+			}
+		}
+	}
+
 	public static void main(String[] args)
 	{
-		int tie = 0;
 		Player[] player = new Player[5];
 		for (int i = 0; i < player.length; i++)
 		{
 			player[i] = new Player();
 		}
 
-		for (int i = 0; i < player.length; i++)
-		{
-			for (int j = 0; j < player.length; j++)
-			{
-				if (player[i].element == player[j].element)
-				{
-					if (i != j)
-						tie++;
-					continue;
-				}	
+		playGame(player);
 
-				if (player[i].element == getWinner(player[i].element, player[j].element))
-					player[i].incrementScore();
-				else
-					player[j].incrementScore();
-
-			}
-		}
-
-		System.out.println("Ties: " + tie);
+		System.out.println("Ties: " + ties);
 		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
 	}
 }
