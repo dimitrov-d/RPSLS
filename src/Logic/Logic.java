@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Logic
 {
 	static int ties = 0;
+
 	protected enum Element
 	{
 		ROCK, PAPER, SCISSORS, LIZARD, SPOCK
@@ -16,8 +17,9 @@ public class Logic
 	{
 		return Element.values()[new Random().nextInt(Element.values().length)];
 	}
-	
-	protected static void randomizePlayers(Player[] players) {
+
+	protected static void randomizePlayers(Player[] players)
+	{
 		Arrays.asList(players).stream().forEach(p -> p.element = getRandomElement());
 	}
 
@@ -95,18 +97,18 @@ public class Logic
 
 	public static void getWinnerPlayer(Player p1, Player p2)
 	{
-		if (p1.element == p2.element) {
+		if (p1.element == p2.element)
 			return;
-		}
-		
 
 		if (p1.element == getWinnerElement(p1.element, p2.element))
 			p1.incrementScore();
 		else
 			p2.incrementScore();
 	}
-	
-	public static void playGame(Player[] player) 
+
+	// Total number of games: 5 * 4 * number_of_games
+	// Maximum number of wins: 5 * number_of_games
+	public static void playGame(Player[] player)
 	{
 		for (int i = 0; i < player.length; i++)
 		{
@@ -114,10 +116,16 @@ public class Logic
 			{
 				for (int z = 0; z < 5; z++)
 				{
-					if (player[i].element == player[j].element && i!=j)
-						ties++;
-					getWinnerPlayer(player[i],player[j]);
+					if (i==j)
+						break;
+					
+					if (player[i].element == player[j].element)
+							ties++;
+					
+					getWinnerPlayer(player[i], player[j]);
 					randomizePlayers(player);
+
+					System.out.println("Game " + (z+1) + ": Players " + (i+1) + " and " + (j+1));
 				}
 			}
 		}
