@@ -115,12 +115,16 @@ public class JavaFX_Helper
 		dialog.setHeaderText("How many games should each player play?");
 		dialog.setContentText("Enter here:");
 
-		Optional<String> result = dialog.showAndWait();
-			result.ifPresent(games -> System.out.println("Number of games: " + games));
+		Optional<String> value = dialog.showAndWait();
+			value.ifPresent(games -> System.out.println("Number of games: " + games));
 		
-//		if (!newValue.matches("\\d*")) {
-//            textField.setText(newValue.replaceAll("[^\\d]", ""));
-//        }  For invalid inputs
+		while (!value.get().matches("\\d*") || value.get().equals("")) {
+			dialog.setHeaderText("Please enter a number!");
+			 value = dialog.showAndWait();
+			 value.ifPresent(games -> System.out.println("Number of games: " + games));
+		}
+		
+        
 	}
 
 	private String getInstructions()
