@@ -107,24 +107,27 @@ public class JavaFX_Helper
 		gridPane.add(text, 1, 0);
 
 	}
-	
-	protected void addTestWindowItems(GridPane gridPane) 
+
+	protected void addTestWindowItems(GridPane gridPane)
 	{
-		TextInputDialog dialog = new TextInputDialog("");
+		TextInputDialog dialog = new TextInputDialog("5");
 		dialog.setTitle("Input");
 		dialog.setHeaderText("How many games should each player play?");
 		dialog.setContentText("Enter here:");
 
 		Optional<String> value = dialog.showAndWait();
-			value.ifPresent(games -> System.out.println("Number of games: " + games));
-		
-		while (!value.get().matches("\\d*") || value.get().equals("")) {
+
+		if (!value.isPresent()) // Must check if value is present before validation
+			while (!value.isPresent())
+				value = dialog.showAndWait();
+
+		while (!value.get().matches("^\\d+$")) // Only numbers and non-empty input
+		{
 			dialog.setHeaderText("Please enter a number!");
-			 value = dialog.showAndWait();
-			 value.ifPresent(games -> System.out.println("Number of games: " + games));
+			value = dialog.showAndWait();
 		}
 		
-        
+		value.ifPresent(games -> System.out.println("Number of games: " + games));
 	}
 
 	private String getInstructions()
