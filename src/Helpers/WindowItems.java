@@ -7,6 +7,7 @@ import Logic.Logic;
 import Logic.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
@@ -57,9 +58,10 @@ public class WindowItems
 		howToPlay.setOnAction(new EventHandlers().howToPlayWindow());
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
 	}
-	
+
 	protected static void addInstructionWindowItems(GridPane gridPane)
 	{
+		gridPane.setAlignment(Pos.CENTER);
 		Image image = new Image(
 				"https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
 				400, 580, false, true);
@@ -78,7 +80,7 @@ public class WindowItems
 		gridPane.add(text, 1, 0);
 
 	}
-	
+
 	protected static void addTestWindowItems(GridPane gridPane)
 	{
 		dialog.setTitle("Input");
@@ -88,8 +90,29 @@ public class WindowItems
 		Optional<String> numGames = dialog.showAndWait();
 		numGames = validateInput(numGames);
 		initiatePlayers(player, Integer.parseInt(numGames.get()));
+
+		Label number = new Label("Number of games per player: " + numGames.get());
+		number.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		number.setTextFill(Color.ANTIQUEWHITE);
+		gridPane.add(number, 0, 0);
+		GridPane.setHalignment(number, HPos.LEFT);
+		GridPane.setMargin(number, new Insets(-30, 0, 0, 20));
+		
+		Label total = new Label("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())));
+		total.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		total.setTextFill(Color.ANTIQUEWHITE);
+		gridPane.add(total, 0, 0);
+		GridPane.setHalignment(total, HPos.LEFT);
+		GridPane.setMargin(total, new Insets(10, 0, 0, 20));
+		
+		Label max = new Label("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())));
+		max.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		max.setTextFill(Color.ANTIQUEWHITE);
+		gridPane.add(max, 0, 0);
+		GridPane.setHalignment(max, HPos.LEFT);
+		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
 	}
-	
+
 	private static void initiatePlayers(Player[] player, int numGames)
 	{
 		for (int i = 0; i < player.length; i++)
