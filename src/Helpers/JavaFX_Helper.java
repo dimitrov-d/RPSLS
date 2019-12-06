@@ -27,6 +27,10 @@ import javafx.scene.text.TextAlignment;
 
 public class JavaFX_Helper
 {
+
+	Player[] player = new Player[5];
+	static TextInputDialog dialog = new TextInputDialog("5");
+
 	public GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
@@ -37,7 +41,7 @@ public class JavaFX_Helper
 		return gridPane;
 	}
 
-	public void addItems(GridPane gridPane)
+	public void addMainWindowItems(GridPane gridPane)
 	{
 		Label headerLabel = new Label("Welcome To");
 		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
@@ -112,42 +116,49 @@ public class JavaFX_Helper
 
 	protected void addTestWindowItems(GridPane gridPane)
 	{
-		TextInputDialog dialog = new TextInputDialog("5");
 		dialog.setTitle("Input");
 		dialog.setHeaderText("How many games should each player play?");
 		dialog.setContentText("Enter here:");
 
 		Optional<String> numGames = dialog.showAndWait();
-
-		while (!numGames.get().matches("^\\d+$")) // Only numbers and non-empty input
-		{
-			dialog.setHeaderText("Please enter a number!");
-			numGames = dialog.showAndWait();
-		}
-		
-		numGames.ifPresent(games -> System.out.println("Number of games per player: " + games));
-		
-		
-		Player[] player = new Player[5];
-		for (int i = 0; i < player.length; i++)
-		{
-			player[i] = new Player();
-		}
-
-		Logic.playGame(player, Integer.parseInt(numGames.get()));
-
-		System.out.println("Ties: " + Logic.getTies());
-		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
+		numGames = validateInput(numGames);
+		initiatePlayers(player, Integer.parseInt(numGames.get()));
 	}
 
 	private String getInstructions()
 	{
 		return "The game is an extension of the game Rock, Paper, Scissors. \n" + "Every player picks an element. \n"
+				+ "Every player plays the given amount of games with each other player \n"
 				+ "The winner is the player who beats the other players. \n"
 				+ "In case of a tie, the game repeats until we find a winner. \n \n"
 				+ "The rules of the game are as follows: \n" + "- Scissors cuts Paper \n" + "- Paper covers Rock \n"
 				+ "- Rock crushes Lizard \n" + "- Lizard poisons Spock\n" + "- Spock smashes Scissors \n"
 				+ "- Scissors decapitates Lizard \n" + "- Paper disproves Spock \n" + "- Spock vaporizes Rock \n"
 				+ "- (and as it always has) Rock crushes Scissors \n";
+	}
+
+	private static void initiatePlayers(Player[] player, int numGames)
+	{
+		for (int i = 0; i < player.length; i++)
+		{
+			player[i] = new Player();
+		}
+
+		Logic.playGame(player, numGames);
+
+		System.out.println("Ties: " + Logic.getTies());
+		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
+	}
+
+	private static Optional<String> validateInput(Optional<String> input)
+	{
+		while (!input.get().matches("^\\d+$")) // Only numbers and non-empty input
+		{
+			dialog.setHeaderText("Please enter a number!");
+			input = dialog.showAndWait();
+		}
+
+		input.ifPresent(games -> System.out.println("Number of games per player: " + games));
+		return input;
 	}
 }
