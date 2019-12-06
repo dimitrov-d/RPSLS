@@ -1,33 +1,17 @@
 package Helpers;
 
-import java.util.Arrays;
-import java.util.Optional;
-
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 
-public class JavaFX_Helper
+public class JavaFXHelper
 {
-
-
 	public static GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
@@ -37,7 +21,6 @@ public class JavaFX_Helper
 		gridPane.setBackground(getBackground());
 		return gridPane;
 	}
-
 
 	protected static Button makeButton(String text)
 	{
@@ -59,10 +42,7 @@ public class JavaFX_Helper
 		return new Background(woodBackground);
 	}
 
-
-	
-
-	static String getInstructions()
+	protected static String getInstructions()
 	{
 		return "The game is an extension of the game Rock, Paper, Scissors. \n" + "Every player picks an element. \n"
 				+ "Every player plays the given amount \n"
@@ -74,6 +54,4 @@ public class JavaFX_Helper
 				+ "- Scissors decapitates Lizard \n" + "- Paper disproves Spock \n" + "- Spock vaporizes Rock \n"
 				+ "- (and as it always has) Rock crushes Scissors \n";
 	}
-
-	
 }

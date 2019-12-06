@@ -1,6 +1,6 @@
 package Logic;
 
-import Helpers.JavaFX_Helper;
+import Helpers.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -18,9 +18,8 @@ public class Main extends Application
 	public static void showStartScreen(Stage primaryStage) {
 		
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
-		var helper = new JavaFX_Helper();
-		GridPane gridPane = helper.createGridPane();
-		helper.addItems(gridPane);
+		GridPane gridPane = JavaFXHelper.createGridPane();
+		WindowItems.addMainWindowItems(gridPane);
 		Scene scene = new Scene(gridPane, 600, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();

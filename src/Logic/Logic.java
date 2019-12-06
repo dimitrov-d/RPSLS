@@ -144,18 +144,4 @@ public class Logic
 	{
 		return ties;
 	}
-
-	public static void main(String[] args)
-	{
-		Player[] player = new Player[5];
-		for (int i = 0; i < player.length; i++)
-		{
-			player[i] = new Player();
-		}
-
-		playGame(player, 5);
-
-		System.out.println("Ties: " + ties);
-		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
-	}
 }

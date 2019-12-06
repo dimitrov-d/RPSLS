@@ -12,10 +12,6 @@ import javafx.stage.WindowEvent;
 
 public class EventHandlers
 {
-	
-	JavaFX_Helper helper = new JavaFX_Helper();
-	
-	
 	protected EventHandler<ActionEvent> openNewWindow()
 	{
 		return event ->
@@ -34,14 +30,14 @@ public class EventHandlers
 		{
 			Stage stage = new Stage();
 			stage.setTitle("How to play");
-			GridPane gridPane = helper.createGridPane();
-			Scene scene = new Scene(gridPane, 988, 550);
+			GridPane gridPane = JavaFXHelper.createGridPane();
+			Scene scene = new Scene(gridPane, 988, 580);
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
 			((Node) event.getSource()).getScene().getWindow().hide();
 			stage.setOnCloseRequest(closeWindowEvent());
-			helper.addInstructionWindowItems(gridPane);
+			WindowItems.addInstructionWindowItems(gridPane);
 		};
 	}
 	
@@ -51,13 +47,13 @@ public class EventHandlers
 		{
 			Stage stage = new Stage();
 			stage.setTitle("Test Players");
-			GridPane gridPane = helper.createGridPane();
+			GridPane gridPane = JavaFXHelper.createGridPane();
 			Scene scene = new Scene(gridPane, 600, 700);
 			stage.setScene(scene);
 			stage.show();
 			((Node) event.getSource()).getScene().getWindow().hide();
 			stage.setOnCloseRequest(closeWindowEvent());
-			helper.addTestWindowItems(gridPane);
+			WindowItems.addTestWindowItems(gridPane);
 		};
 	}
 

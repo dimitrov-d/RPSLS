@@ -23,7 +23,7 @@ import javafx.scene.text.TextAlignment;
 
 public class WindowItems
 {
-	Player[] player = new Player[5];
+	static Player[] player = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
 	
 	public static void addMainWindowItems(GridPane gridPane)
@@ -42,30 +42,30 @@ public class WindowItems
 		GridPane.setHalignment(nameLabel, HPos.CENTER);
 		GridPane.setMargin(nameLabel, new Insets(-50, 0, 50, 0));
 
-		Button playButton = JavaFX_Helper.makeButton("Play");
+		Button playButton = JavaFXHelper.makeButton("Play");
 		gridPane.add(playButton, 0, 2);
 		playButton.setOnAction(new EventHandlers().openNewWindow());
 		GridPane.setHalignment(playButton, HPos.CENTER);
 
-		Button testButton = JavaFX_Helper.makeButton("Test ");
+		Button testButton = JavaFXHelper.makeButton("Test ");
 		gridPane.add(testButton, 0, 3);
 		testButton.setOnAction(new EventHandlers().testWindow());
 		GridPane.setHalignment(testButton, HPos.CENTER);
 
-		Button howToPlay = JavaFX_Helper.makeButton("How to play ");
+		Button howToPlay = JavaFXHelper.makeButton("How to play ");
 		gridPane.add(howToPlay, 0, 4);
 		howToPlay.setOnAction(new EventHandlers().howToPlayWindow());
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
 	}
 	
-	protected void addInstructionWindowItems(GridPane gridPane)
+	protected static void addInstructionWindowItems(GridPane gridPane)
 	{
 		Image image = new Image(
 				"https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
 				400, 580, false, true);
 		ImageView imageView = new ImageView(image);
 		gridPane.add(imageView, 0, 0);
-		String instructions = JavaFX_Helper.getInstructions();
+		String instructions = JavaFXHelper.getInstructions();
 		Label text = new Label(instructions);
 		text.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		text.setTextFill(Color.rgb(95, 197, 185));
@@ -79,7 +79,7 @@ public class WindowItems
 
 	}
 	
-	protected void addTestWindowItems(GridPane gridPane)
+	protected static void addTestWindowItems(GridPane gridPane)
 	{
 		dialog.setTitle("Input");
 		dialog.setHeaderText("How many games should each player play?");
@@ -93,9 +93,7 @@ public class WindowItems
 	private static void initiatePlayers(Player[] player, int numGames)
 	{
 		for (int i = 0; i < player.length; i++)
-		{
 			player[i] = new Player();
-		}
 
 		Logic.playGame(player, numGames);
 
