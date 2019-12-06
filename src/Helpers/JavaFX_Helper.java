@@ -1,7 +1,9 @@
 package Helpers;
 
+import java.util.Arrays;
 import java.util.Optional;
 
+import Logic.*;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -115,19 +117,27 @@ public class JavaFX_Helper
 		dialog.setHeaderText("How many games should each player play?");
 		dialog.setContentText("Enter here:");
 
-		Optional<String> value = dialog.showAndWait();
+		Optional<String> numGames = dialog.showAndWait();
 
-		if (!value.isPresent()) // Must check if value is present before validation
-			while (!value.isPresent())
-				value = dialog.showAndWait();
-
-		while (!value.get().matches("^\\d+$")) // Only numbers and non-empty input
+		while (!numGames.get().matches("^\\d+$")) // Only numbers and non-empty input
 		{
 			dialog.setHeaderText("Please enter a number!");
-			value = dialog.showAndWait();
+			numGames = dialog.showAndWait();
 		}
 		
-		value.ifPresent(games -> System.out.println("Number of games: " + games));
+		numGames.ifPresent(games -> System.out.println("Number of games per player: " + games));
+		
+		
+		Player[] player = new Player[5];
+		for (int i = 0; i < player.length; i++)
+		{
+			player[i] = new Player();
+		}
+
+		Logic.playGame(player, Integer.parseInt(numGames.get()));
+
+		System.out.println("Ties: " + Logic.getTies());
+		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
 	}
 
 	private String getInstructions()
