@@ -24,11 +24,18 @@ import javafx.scene.text.TextAlignment;
 
 public class WindowItems
 {
+
+	private WindowItems()
+	{
+		throw new IllegalStateException("Utility class");
+	}
+
 	static Player[] player = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
-	
+
 	public static void addMainWindowItems(GridPane gridPane)
 	{
+		gridPane.setAlignment(Pos.CENTER);
 		Label headerLabel = new Label("Welcome To");
 		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
 		headerLabel.setTextFill(Color.ANTIQUEWHITE);

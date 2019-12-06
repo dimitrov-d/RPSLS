@@ -1,6 +1,5 @@
 package Helpers;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -12,10 +11,15 @@ import javafx.scene.layout.GridPane;
 
 public class JavaFXHelper
 {
+	
+	private JavaFXHelper()
+	{
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
-		gridPane.setAlignment(Pos.CENTER);
 		gridPane.setHgap(10);
 		gridPane.setVgap(80);
 		gridPane.setBackground(getBackground());
