@@ -2,11 +2,10 @@ package Logic;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Logic
 {
-	static int ties = 0;
+	private static int ties = 0;
 
 	protected enum Element
 	{
@@ -27,7 +26,6 @@ public class Logic
 	{
 		switch (el1)
 		{
-
 		case ROCK:
 			switch (el2)
 			{
@@ -39,6 +37,8 @@ public class Logic
 				return Element.ROCK;
 			case SPOCK:
 				return Element.SPOCK;
+			default:
+				break;
 			}
 
 		case LIZARD:
@@ -52,6 +52,8 @@ public class Logic
 				return Element.SCISSORS;
 			case SPOCK:
 				return Element.LIZARD;
+			default:
+				break;
 			}
 		case PAPER:
 			switch (el2)
@@ -64,6 +66,8 @@ public class Logic
 				return Element.LIZARD;
 			case SPOCK:
 				return Element.PAPER;
+			default:
+				break;
 			}
 		case SCISSORS:
 			switch (el2)
@@ -76,6 +80,8 @@ public class Logic
 				return Element.SCISSORS;
 			case SPOCK:
 				return Element.SPOCK;
+			default:
+				break;
 			}
 		case SPOCK:
 			switch (el2)
@@ -88,10 +94,12 @@ public class Logic
 				return Element.SPOCK;
 			case LIZARD:
 				return Element.LIZARD;
+			default:
+				break;
 
 			}
 		default:
-			return el1; // Tie
+			return el1;
 		}
 	}
 
@@ -108,27 +116,33 @@ public class Logic
 
 	// Total number of games: 5 * 4 * number_of_games
 	// Maximum number of wins: 5 * number_of_games
-	public static void playGame(Player[] player)
+	public static void playGame(Player[] player, int numGames)
 	{
+		System.out.println("Total number of games: " + (5 * 4 * numGames));
+		System.out.println("Maximum number of wins: " + (5 * numGames));
+
 		for (int i = 0; i < player.length; i++)
 		{
 			for (int j = 0; j < player.length; j++)
 			{
-				for (int z = 0; z < 5; z++)
+				for (int z = 0; z < numGames; z++)
 				{
-					if (i==j)
+					if (i == j)
 						break;
-					
+
 					if (player[i].element == player[j].element)
-							ties++;
-					
+						ties++;
+
 					getWinnerPlayer(player[i], player[j]);
 					randomizePlayers(player);
-
-					System.out.println("Game " + (z+1) + ": Players " + (i+1) + " and " + (j+1));
 				}
 			}
 		}
+	}
+
+	public static int getTies()
+	{
+		return ties;
 	}
 
 	public static void main(String[] args)
@@ -139,7 +153,7 @@ public class Logic
 			player[i] = new Player();
 		}
 
-		playGame(player);
+		playGame(player, 5);
 
 		System.out.println("Ties: " + ties);
 		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
