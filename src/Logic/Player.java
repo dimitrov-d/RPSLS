@@ -5,10 +5,10 @@ import Logic.Logic.Element;
 
 public class Player
 {
-	 Element element;
-	 int score;
+	 public Element element;
+	 public int score;
 	
-	Player() {
+	public Player() {
 		element = Logic.getRandomElement();
 		score = 0;
 	}
