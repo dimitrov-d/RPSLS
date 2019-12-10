@@ -1,6 +1,7 @@
 package Helpers;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -8,6 +9,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class JavaFXHelper
 {
@@ -34,6 +38,15 @@ public class JavaFXHelper
 		button.setStyle("-fx-font-size: 1.5em;");
 
 		return button;
+	}
+	
+	protected static Label makeLabel(String text, int size) 
+	{
+		Label label = new Label(text);
+		label.setFont(Font.font("Arial", FontWeight.BOLD, size));
+		label.setTextFill(Color.ANTIQUEWHITE);
+		
+		return label;
 	}
 
 	protected static Background getBackground()

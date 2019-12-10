@@ -36,16 +36,12 @@ public class WindowItems
 	public static void addMainWindowItems(GridPane gridPane)
 	{
 		gridPane.setAlignment(Pos.CENTER);
-		Label headerLabel = new Label("Welcome To");
-		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
-		headerLabel.setTextFill(Color.ANTIQUEWHITE);
+		Label headerLabel = JavaFXHelper.makeLabel("Welcome To", 36);
 		gridPane.add(headerLabel, 0, 0);
 		GridPane.setHalignment(headerLabel, HPos.CENTER);
 		GridPane.setMargin(headerLabel, new Insets(0, 0, 0, 0));
 
-		Label nameLabel = new Label("Rock Paper Scissors Lizard Spock");
-		nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-		nameLabel.setTextFill(Color.ANTIQUEWHITE);
+		Label nameLabel = JavaFXHelper.makeLabel("Rock Paper Scissors Lizard Spock", 30);
 		gridPane.add(nameLabel, 0, 1);
 		GridPane.setHalignment(nameLabel, HPos.CENTER);
 		GridPane.setMargin(nameLabel, new Insets(-50, 0, 50, 0));
@@ -98,23 +94,17 @@ public class WindowItems
 		numGames = validateInput(numGames);
 		initiatePlayers(player, Integer.parseInt(numGames.get()));
 
-		Label number = new Label("Number of games per player: " + numGames.get());
-		number.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		number.setTextFill(Color.ANTIQUEWHITE);
+		Label number = JavaFXHelper.makeLabel("Number of games per player: " + numGames.get(), 20);
 		gridPane.add(number, 0, 0);
 		GridPane.setHalignment(number, HPos.LEFT);
 		GridPane.setMargin(number, new Insets(-30, 0, 0, 20));
 		
-		Label total = new Label("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())));
-		total.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		total.setTextFill(Color.ANTIQUEWHITE);
+		Label total = JavaFXHelper.makeLabel("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())), 20);
 		gridPane.add(total, 0, 0);
 		GridPane.setHalignment(total, HPos.LEFT);
 		GridPane.setMargin(total, new Insets(10, 0, 0, 20));
 		
-		Label max = new Label("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())));
-		max.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		max.setTextFill(Color.ANTIQUEWHITE);
+		Label max = JavaFXHelper.makeLabel("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())), 20);
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
@@ -137,6 +127,9 @@ public class WindowItems
 		GridPane.setMargin(player3, new Insets(-20, 0, 0, 0));
 		GridPane.setMargin(player4, new Insets(0, 0, 0, 70));
 		GridPane.setMargin(player5, new Insets(0, 0, 0, 0));
+		
+		Label player1Label = JavaFXHelper.makeLabel("Score: " + player[0].score, 20);
+		gridPane.add(player1Label, 0, 2);
 	}
 
 	private static void initiatePlayers(Player[] player, int numGames)
