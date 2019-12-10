@@ -120,7 +120,7 @@ public class WindowItems
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
 		
 		Image playerImage = new Image(
-				"https://lh3.googleusercontent.com/BAqGbYROjpyL7vYOAdc7LhpnXkc-E1vr9m0u1k6nEngH8o5gQwNHfF6TbrB5Z_CWpGUCG6YXyLCVgkqzs1qWT2AIr8gk83n7e7GCqX8_rZ75KdoYyDNAipLzJ9dkzKizmVgyuvcWLTmG5Wn-B7bOlx9S8J_UOhtDHLjqJz7FnnOFC9cRjT6x0CZKrJVev-7NSuJ2P4k3-KGk1C-5gdRHWeABhp2O1KOAStJ9dpWDrAqbC70T4qG5ApB4dEhctnyDPkPsHSCXE2TDX49YIuSiouaZpq6K0bFIQrU7y6LXVUL5Bc_A-VMsqEggEcMIUCCr1ukDLxT9zcpTM20-9QSOc7jou18lAWwNHi0TZip36ZonNuFepmtX4x1nRtHPEkYogrdef2UtYN_y5q0e6polW0S36cM5X7P5DlJWAHuSM-THH-doAcCjQQX2vC7ezuPDLDAqLfr1dioopZTjXx5w3c-x21I86THUB3pjiU1GMo25AzKqbQXGmhICexJ3PkVAjil6yIPAoTEXqqt_Zaz1rSI8ZpDC5RbcsGV5TPR7jMkrC0Ks4Dvlgf37mnc1BgE6xR0kRWEZ9x4b6wuzOxDoSisnS4BAJSGXJoH3tr9il8qjwlTi90TOh_P5gmASKESrSGdPtNPslH-ydiOIT0HFFbu3aqIQzK9RieIn0PBUAv2dY508aP33NA=w506-h440-no",
+				"https://lh3.googleusercontent.com/Og2_2LgeJjOkPIVEJOnaGXckFPFSovu59rkPaHs82M6la0_GHRtbO_kkbMTCh6DvXs5zZD8sZTQT0iKIsXbjbCzDC3_f44QtCSG5jIO5YHnhOP35OSA2jhg6XN29nqi7RosMvC8SSDdW8hYjVTcbrJYb8H5-tB7Qw5yhSKsB9kie8ezPnizkwkjw4aC-eh5J7NDgsZOgVCFITYmov6_x11er2MJClg2t_eJtAA4D_agSFrokkXsYFbryBk43hSh--iAu8nnzCIudgpIvU7H5Z1US9vHOeK_wxtl9mFPF1P5jbNeame6xG_9lGblgOeaJtrzeQZkkvTAUtsEP93fRSlS2O3bvhMT22ooK6XSggs0ABEKkTqKM0PesCjswEZ5ILRwY2zwtAcnw0ju9xRzfa0d8vhKHSVTGLndfYt_5-HugPQrQ7ay2yE3D9geypR5LrcRJ46epZ6lF38bKOD0EJlD31101fFby5szuXr2a0-4vv1YBRiHsF08VBgkm5mHBvJqk34eaxwocNPLk5CeoUXlcX8JM4IYeWSaSn5KmEshpDEzyP6g_XEA9vYkT-soiKkxo2hAXXn9chmw35v90Ljvi3nugaGukTaMKtGLEntw9EY2zNDKEAvHp8N_JMJQU0ZC5DFHzrV6ejkfgvu3xsUOnDY5Fkm-tlih5pHrswREbQan5KGEKjPc=w506-h440-no",
 				100, 100, false, true);
 		ImageView player1 = new ImageView(playerImage);
 		ImageView player2 = new ImageView(playerImage);
@@ -133,9 +133,9 @@ public class WindowItems
 		gridPane.add(player4, 0, 4);
 		gridPane.add(player5, 2, 4);
 		GridPane.setMargin(player1, new Insets(-50, 0, 0, -160));
-		GridPane.setMargin(player2, new Insets(0, 0, 0, 60));
-		GridPane.setMargin(player3, new Insets(0, 0, 0, 0));
-		GridPane.setMargin(player4, new Insets(0, 0, 0, 60));
+		GridPane.setMargin(player2, new Insets(-20, 0, 0, 70));
+		GridPane.setMargin(player3, new Insets(-20, 0, 0, 0));
+		GridPane.setMargin(player4, new Insets(0, 0, 0, 70));
 		GridPane.setMargin(player5, new Insets(0, 0, 0, 0));
 	}
 
