@@ -118,6 +118,25 @@ public class WindowItems
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
+		
+		Image playerImage = new Image(
+				"https://lh3.googleusercontent.com/BAqGbYROjpyL7vYOAdc7LhpnXkc-E1vr9m0u1k6nEngH8o5gQwNHfF6TbrB5Z_CWpGUCG6YXyLCVgkqzs1qWT2AIr8gk83n7e7GCqX8_rZ75KdoYyDNAipLzJ9dkzKizmVgyuvcWLTmG5Wn-B7bOlx9S8J_UOhtDHLjqJz7FnnOFC9cRjT6x0CZKrJVev-7NSuJ2P4k3-KGk1C-5gdRHWeABhp2O1KOAStJ9dpWDrAqbC70T4qG5ApB4dEhctnyDPkPsHSCXE2TDX49YIuSiouaZpq6K0bFIQrU7y6LXVUL5Bc_A-VMsqEggEcMIUCCr1ukDLxT9zcpTM20-9QSOc7jou18lAWwNHi0TZip36ZonNuFepmtX4x1nRtHPEkYogrdef2UtYN_y5q0e6polW0S36cM5X7P5DlJWAHuSM-THH-doAcCjQQX2vC7ezuPDLDAqLfr1dioopZTjXx5w3c-x21I86THUB3pjiU1GMo25AzKqbQXGmhICexJ3PkVAjil6yIPAoTEXqqt_Zaz1rSI8ZpDC5RbcsGV5TPR7jMkrC0Ks4Dvlgf37mnc1BgE6xR0kRWEZ9x4b6wuzOxDoSisnS4BAJSGXJoH3tr9il8qjwlTi90TOh_P5gmASKESrSGdPtNPslH-ydiOIT0HFFbu3aqIQzK9RieIn0PBUAv2dY508aP33NA=w506-h440-no",
+				100, 100, false, true);
+		ImageView player1 = new ImageView(playerImage);
+		ImageView player2 = new ImageView(playerImage);
+		ImageView player3 = new ImageView(playerImage);
+		ImageView player4 = new ImageView(playerImage);
+		ImageView player5 = new ImageView(playerImage);
+		gridPane.add(player1, 1, 2);
+		gridPane.add(player2, 0, 3);
+		gridPane.add(player3, 2, 3);
+		gridPane.add(player4, 0, 4);
+		gridPane.add(player5, 2, 4);
+		GridPane.setMargin(player1, new Insets(-50, 0, 0, -160));
+		GridPane.setMargin(player2, new Insets(0, 0, 0, 60));
+		GridPane.setMargin(player3, new Insets(0, 0, 0, 0));
+		GridPane.setMargin(player4, new Insets(0, 0, 0, 60));
+		GridPane.setMargin(player5, new Insets(0, 0, 0, 0));
 	}
 
 	private static void initiatePlayers(Player[] player, int numGames)

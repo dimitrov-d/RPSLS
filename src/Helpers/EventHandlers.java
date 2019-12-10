@@ -47,8 +47,9 @@ public class EventHandlers
 		{
 			Stage stage = new Stage();
 			stage.setTitle("Test Players");
+			stage.setResizable(false);
 			GridPane gridPane = JavaFXHelper.createGridPane();
-			Scene scene = new Scene(gridPane, 600, 700);
+			Scene scene = new Scene(gridPane, 610, 700);
 			stage.setScene(scene);
 			stage.show();
 			((Node) event.getSource()).getScene().getWindow().hide();
