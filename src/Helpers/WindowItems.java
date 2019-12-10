@@ -98,17 +98,19 @@ public class WindowItems
 		gridPane.add(number, 0, 0);
 		GridPane.setHalignment(number, HPos.LEFT);
 		GridPane.setMargin(number, new Insets(-30, 0, 0, 20));
-		
-		Label total = JavaFXHelper.makeLabel("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())), 20);
+
+		Label total = JavaFXHelper.makeLabel("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())),
+				20);
 		gridPane.add(total, 0, 0);
 		GridPane.setHalignment(total, HPos.LEFT);
 		GridPane.setMargin(total, new Insets(10, 0, 0, 20));
-		
-		Label max = JavaFXHelper.makeLabel("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())), 20);
+
+		Label max = JavaFXHelper
+				.makeLabel("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())), 20);
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
-		
+
 		Image playerImage = new Image(
 				"https://lh3.googleusercontent.com/Og2_2LgeJjOkPIVEJOnaGXckFPFSovu59rkPaHs82M6la0_GHRtbO_kkbMTCh6DvXs5zZD8sZTQT0iKIsXbjbCzDC3_f44QtCSG5jIO5YHnhOP35OSA2jhg6XN29nqi7RosMvC8SSDdW8hYjVTcbrJYb8H5-tB7Qw5yhSKsB9kie8ezPnizkwkjw4aC-eh5J7NDgsZOgVCFITYmov6_x11er2MJClg2t_eJtAA4D_agSFrokkXsYFbryBk43hSh--iAu8nnzCIudgpIvU7H5Z1US9vHOeK_wxtl9mFPF1P5jbNeame6xG_9lGblgOeaJtrzeQZkkvTAUtsEP93fRSlS2O3bvhMT22ooK6XSggs0ABEKkTqKM0PesCjswEZ5ILRwY2zwtAcnw0ju9xRzfa0d8vhKHSVTGLndfYt_5-HugPQrQ7ay2yE3D9geypR5LrcRJ46epZ6lF38bKOD0EJlD31101fFby5szuXr2a0-4vv1YBRiHsF08VBgkm5mHBvJqk34eaxwocNPLk5CeoUXlcX8JM4IYeWSaSn5KmEshpDEzyP6g_XEA9vYkT-soiKkxo2hAXXn9chmw35v90Ljvi3nugaGukTaMKtGLEntw9EY2zNDKEAvHp8N_JMJQU0ZC5DFHzrV6ejkfgvu3xsUOnDY5Fkm-tlih5pHrswREbQan5KGEKjPc=w506-h440-no",
 				100, 100, false, true);
@@ -127,9 +129,25 @@ public class WindowItems
 		GridPane.setMargin(player3, new Insets(-20, 0, 0, 0));
 		GridPane.setMargin(player4, new Insets(0, 0, 0, 70));
 		GridPane.setMargin(player5, new Insets(0, 0, 0, 0));
-		
+
 		Label player1Label = JavaFXHelper.makeLabel("Score: " + player[0].score, 20);
-		gridPane.add(player1Label, 0, 2);
+		Label player2Label = JavaFXHelper.makeLabel("Score: " + player[1].score, 20);
+		Label player3Label = JavaFXHelper.makeLabel("Score: " + player[2].score, 20);
+		Label player4Label = JavaFXHelper.makeLabel("Score: " + player[3].score, 20);
+		Label player5Label = JavaFXHelper.makeLabel("Score: " + player[4].score, 20);
+		Label tiesLabel = JavaFXHelper.makeLabel("Ties: " + Logic.getTies(), 25);
+		gridPane.add(player1Label, 1, 2);
+		gridPane.add(player2Label, 0, 3);
+		gridPane.add(player3Label, 2, 3);
+		gridPane.add(player4Label, 0, 4);
+		gridPane.add(player5Label, 2, 4);
+		gridPane.add(tiesLabel, 1, 3);
+		GridPane.setMargin(player1Label, new Insets(-185, 0, 0, -155));
+		GridPane.setMargin(player2Label, new Insets(-150, 0, 0, 80));
+		GridPane.setMargin(player3Label, new Insets(-150, 0, 0, 0));
+		GridPane.setMargin(player4Label, new Insets(-130, 0, 0, 80));
+		GridPane.setMargin(player5Label, new Insets(-130, 0, 0, 0));
+		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -155));
 	}
 
 	private static void initiatePlayers(Player[] player, int numGames)
