@@ -112,7 +112,7 @@ public class WindowItems
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
 
 		Image playerImage = new Image(
-				"https://lh3.googleusercontent.com/Og2_2LgeJjOkPIVEJOnaGXckFPFSovu59rkPaHs82M6la0_GHRtbO_kkbMTCh6DvXs5zZD8sZTQT0iKIsXbjbCzDC3_f44QtCSG5jIO5YHnhOP35OSA2jhg6XN29nqi7RosMvC8SSDdW8hYjVTcbrJYb8H5-tB7Qw5yhSKsB9kie8ezPnizkwkjw4aC-eh5J7NDgsZOgVCFITYmov6_x11er2MJClg2t_eJtAA4D_agSFrokkXsYFbryBk43hSh--iAu8nnzCIudgpIvU7H5Z1US9vHOeK_wxtl9mFPF1P5jbNeame6xG_9lGblgOeaJtrzeQZkkvTAUtsEP93fRSlS2O3bvhMT22ooK6XSggs0ABEKkTqKM0PesCjswEZ5ILRwY2zwtAcnw0ju9xRzfa0d8vhKHSVTGLndfYt_5-HugPQrQ7ay2yE3D9geypR5LrcRJ46epZ6lF38bKOD0EJlD31101fFby5szuXr2a0-4vv1YBRiHsF08VBgkm5mHBvJqk34eaxwocNPLk5CeoUXlcX8JM4IYeWSaSn5KmEshpDEzyP6g_XEA9vYkT-soiKkxo2hAXXn9chmw35v90Ljvi3nugaGukTaMKtGLEntw9EY2zNDKEAvHp8N_JMJQU0ZC5DFHzrV6ejkfgvu3xsUOnDY5Fkm-tlih5pHrswREbQan5KGEKjPc=w506-h440-no",
+				"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/User_icon_1.svg/768px-User_icon_1.svg.png",
 				100, 100, false, true);
 		ImageView player1 = new ImageView(playerImage);
 		ImageView player2 = new ImageView(playerImage);
