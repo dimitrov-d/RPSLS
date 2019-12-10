@@ -1,6 +1,5 @@
 package Helpers;
 
-import Logic.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -8,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class EventHandlers
 {
@@ -35,8 +33,6 @@ public class EventHandlers
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
-			((Node) event.getSource()).getScene().getWindow().hide();
-			stage.setOnCloseRequest(closeWindowEvent());
 			WindowItems.addInstructionWindowItems(gridPane);
 		};
 	}
@@ -52,14 +48,12 @@ public class EventHandlers
 			Scene scene = new Scene(gridPane, 610, 700);
 			stage.setScene(scene);
 			stage.show();
-			((Node) event.getSource()).getScene().getWindow().hide();
-			stage.setOnCloseRequest(closeWindowEvent());
 			WindowItems.addTestWindowItems(gridPane);
 		};
 	}
 
-	protected EventHandler<WindowEvent> closeWindowEvent()
-	{
-		return event -> Main.showStartScreen(new Stage());
-	}
+//	protected EventHandler<WindowEvent> closeWindowEvent()
+//	{
+//		return event -> Main.showStartScreen(new Stage());
+//	}
 }
