@@ -118,9 +118,6 @@ public class Logic
 	// Maximum number of wins: 5 * number_of_games
 	public static void playGame(Player[] player, int numGames)
 	{
-		System.out.println("Total number of games: " + (5 * 4 * numGames));
-		System.out.println("Maximum number of wins: " + (5 * numGames));
-
 		for (int i = 0; i < player.length; i++)
 		{
 			for (int j = 0; j < player.length; j++)

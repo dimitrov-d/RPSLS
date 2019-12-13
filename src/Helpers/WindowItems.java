@@ -156,9 +156,6 @@ public class WindowItems
 			player[i] = new Player();
 
 		Logic.playGame(player, numGames);
-
-		System.out.println("Ties: " + Logic.getTies());
-		Arrays.asList(player).stream().forEach(p -> System.out.println(p.element + ": " + p.score));
 	}
 
 	private static Optional<String> validateInput(Optional<String> input)
