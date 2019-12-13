@@ -154,8 +154,12 @@ public class WindowItems
 	{
 		for (int i = 0; i < player.length; i++)
 			player[i] = new Player();
-
+		
+		long start = System.nanoTime();
 		Logic.playGame(player, numGames);
+        // 1 second = 1_000_000_000 nano seconds
+        System.out.println("Gameplay runtime took: " + ((double) (System.nanoTime() - start) / 1_000_000_000) + " seconds");
+
 	}
 
 	private static Optional<String> validateInput(Optional<String> input)
@@ -166,7 +170,6 @@ public class WindowItems
 			input = dialog.showAndWait();
 		}
 
-		input.ifPresent(games -> System.out.println("Number of games per player: " + games));
 		return input;
 	}
 
