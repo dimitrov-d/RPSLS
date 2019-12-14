@@ -28,7 +28,7 @@ public class WindowItems
 		throw new IllegalStateException("Utility class");
 	}
 
-	static Player[] player = new Player[5];
+	static Player[] players = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
 
 	public static void addMainWindowItems(GridPane gridPane)
@@ -90,7 +90,7 @@ public class WindowItems
 
 		Optional<String> numGames = dialog.showAndWait();
 		numGames = validateInput(numGames);
-		initiatePlayers(player, Integer.parseInt(numGames.get()));
+		initiatePlayers(players, Integer.parseInt(numGames.get()));
 
 		Label number = JavaFXHelper.makeLabel("Number of games per player: " + numGames.get(), 20);
 		gridPane.add(number, 0, 0);
@@ -131,7 +131,7 @@ public class WindowItems
 		Label[] playerLabels = new Label[5];
 		for (int i = 0; i < playerLabels.length; i++)
 		{
-			playerLabels[i] = JavaFXHelper.makeLabel("Score: " + player[i].score, 20);
+			playerLabels[i] = JavaFXHelper.makeLabel("Score: " + players[i].score, 20);
 		}
 		Label tiesLabel = JavaFXHelper.makeLabel("Ties: " + Logic.getTies(), 25);
 		gridPane.add(playerLabels[0], 1, 2);
@@ -149,16 +149,16 @@ public class WindowItems
 
 	}
 
-	private static void initiatePlayers(Player[] player, int numGames)
+	private static void initiatePlayers(Player[] players, int numGames)
 	{
-		for (int i = 0; i < player.length; i++)
-			player[i] = new Player();
+		for (int i = 0; i < players.length; i++)
+			players[i] = new Player();
 
 		long start = System.nanoTime();
-		Logic.playGame(player, numGames);
+		Logic.playGame(players, numGames);
 
 		while (equalScoreExists())
-			Logic.playGame(player, numGames);
+			Logic.playGame(players, numGames);
 
 		getWinner();
 
@@ -172,10 +172,10 @@ public class WindowItems
 		int maxScore = 0;
 		String winner = "Player 0";
 
-		for (int i = 0; i < player.length; i++)
-			if (maxScore > player[i].score)
+		for (int i = 0; i < players.length; i++)
+			if (maxScore > players[i].score)
 			{
-				maxScore = player[i].score;
+				maxScore = players[i].score;
 				winner = "Player " + i;
 			}
 
@@ -184,9 +184,9 @@ public class WindowItems
 
 	private static boolean equalScoreExists()
 	{
-		for (int i = 0; i < player.length; i++)
-			for (int j = i + 1; j < player.length; j++)
-				if (player[j] == player[i])
+		for (int i = 0; i < players.length; i++)
+			for (int j = i + 1; j < players.length; j++)
+				if (players[j] == players[i])
 					return true;
 		return false;
 	}
