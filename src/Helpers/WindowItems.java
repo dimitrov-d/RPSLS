@@ -146,18 +146,49 @@ public class WindowItems
 		GridPane.setMargin(player4Label, new Insets(-130, 0, 0, 80));
 		GridPane.setMargin(player5Label, new Insets(-130, 0, 0, 0));
 		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -175));
+
 	}
 
 	private static void initiatePlayers(Player[] player, int numGames)
 	{
 		for (int i = 0; i < player.length; i++)
 			player[i] = new Player();
-		
+
 		long start = System.nanoTime();
 		Logic.playGame(player, numGames);
-        // 1 second = 1_000_000_000 nanoseconds
-        System.out.println("Gameplay runtime took: " + ((double) (System.nanoTime() - start) / 1_000_000_000) + " seconds");
 
+		while (equalScoreExists())
+			Logic.playGame(player, numGames);
+
+		getWinner();
+
+		System.out.println( // 1 second = 1_000_000_000 nanoseconds
+				"Gameplay runtime took: " + ((double) (System.nanoTime() - start) / 1_000_000_000) + " seconds");
+
+	}
+
+	private static String getWinner()
+	{
+		int maxScore = 0;
+		String winner = "Player 0";
+
+		for (int i = 0; i < player.length; i++)
+			if (maxScore > player[i].score)
+			{
+				maxScore = player[i].score;
+				winner = "Player " + i;
+			}
+
+		return winner;
+	}
+
+	private static boolean equalScoreExists()
+	{
+		for (int i = 0; i < player.length; i++)
+			for (int j = i + 1; j < player.length; j++)
+				if (player[j] == player[i])
+					return true;
+		return false;
 	}
 
 	private static Optional<String> validateInput(Optional<String> input)
