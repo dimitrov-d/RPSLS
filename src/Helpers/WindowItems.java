@@ -1,8 +1,6 @@
 package Helpers;
 
-import java.util.Arrays;
 import java.util.Optional;
-
 import Logic.Logic;
 import Logic.Player;
 import javafx.geometry.HPos;
@@ -142,12 +140,12 @@ public class WindowItems
 		gridPane.add(player4Label, 0, 4);
 		gridPane.add(player5Label, 2, 4);
 		gridPane.add(tiesLabel, 1, 3);
-		GridPane.setMargin(player1Label, new Insets(-185, 0, 0, -155));
+		GridPane.setMargin(player1Label, new Insets(-185, 0, 0, -165));
 		GridPane.setMargin(player2Label, new Insets(-150, 0, 0, 80));
 		GridPane.setMargin(player3Label, new Insets(-150, 0, 0, 0));
 		GridPane.setMargin(player4Label, new Insets(-130, 0, 0, 80));
 		GridPane.setMargin(player5Label, new Insets(-130, 0, 0, 0));
-		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -155));
+		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -175));
 	}
 
 	private static void initiatePlayers(Player[] player, int numGames)
@@ -157,7 +155,7 @@ public class WindowItems
 		
 		long start = System.nanoTime();
 		Logic.playGame(player, numGames);
-        // 1 second = 1_000_000_000 nano seconds
+        // 1 second = 1_000_000_000 nanoseconds
         System.out.println("Gameplay runtime took: " + ((double) (System.nanoTime() - start) / 1_000_000_000) + " seconds");
 
 	}
@@ -166,7 +164,7 @@ public class WindowItems
 	{
 		while (!input.get().matches("^\\d+$")) // Only numbers and non-empty input
 		{
-			dialog.setHeaderText("Please enter a number!");
+			dialog.setHeaderText("Please enter a valid number!");
 			input = dialog.showAndWait();
 		}
 
