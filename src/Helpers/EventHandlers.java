@@ -51,9 +51,4 @@ public class EventHandlers
 			WindowItems.addTestWindowItems(gridPane);
 		};
 	}
-
-//	protected EventHandler<WindowEvent> closeWindowEvent()
-//	{
-//		return event -> Main.showStartScreen(new Stage());
-//	}
 }

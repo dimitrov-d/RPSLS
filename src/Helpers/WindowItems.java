@@ -108,6 +108,12 @@ public class WindowItems
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
+		
+		Button testAgainButton = JavaFXHelper.makeButton("Test again");
+		testAgainButton.setPrefWidth(120);
+		gridPane.add(testAgainButton, 1, 4);
+		GridPane.setMargin(testAgainButton, new Insets(0, 0, 0, -170));
+		testAgainButton.setOnAction(new EventHandlers().testWindow());
 
 		Image playerImage = new Image(
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/User_icon_1.svg/768px-User_icon_1.svg.png",
@@ -146,7 +152,7 @@ public class WindowItems
 		GridPane.setMargin(playerLabels[2], new Insets(-150, 0, 0, 0));
 		GridPane.setMargin(playerLabels[3], new Insets(-130, 0, 0, 80));
 		GridPane.setMargin(playerLabels[4], new Insets(-130, 0, 0, 0));
-		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -175));
+		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -165));
 		
 		String winnerScore = getWinner();
 		for (int i = 0; i < playerLabels.length; i++)
