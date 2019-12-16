@@ -36,11 +36,15 @@ public class EventHandlers
 			WindowItems.addInstructionWindowItems(gridPane);
 		};
 	}
-	
+
 	protected EventHandler<ActionEvent> testWindow()
 	{
 		return event ->
 		{
+			Stage previousStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			if (previousStage.getTitle().equals("Test Players"))
+				((Node) event.getSource()).getScene().getWindow().hide();
+
 			Stage stage = new Stage();
 			stage.setTitle("Test Players");
 			stage.setResizable(false);
@@ -49,6 +53,7 @@ public class EventHandlers
 			stage.setScene(scene);
 			stage.show();
 			WindowItems.addTestWindowItems(gridPane);
+
 		};
 	}
 }
