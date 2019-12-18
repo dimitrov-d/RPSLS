@@ -118,6 +118,7 @@ public class Logic
 	// Maximum number of wins: 5 * number_of_games
 	public static void playGame(Player[] player, int numGames)
 	{
+		resetTies();
 		for (int i = 0; i < player.length; i++)
 		{
 			for (int j = 0; j < player.length; j++)
@@ -140,5 +141,9 @@ public class Logic
 	public static int getTies()
 	{
 		return ties;
+	}
+	
+	private static void resetTies() {
+		ties = 0;
 	}
 }
