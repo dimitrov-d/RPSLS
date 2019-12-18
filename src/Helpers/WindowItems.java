@@ -108,9 +108,10 @@ public class WindowItems
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
-		
+
 		Button testAgainButton = JavaFXHelper.makeButton("Test again");
 		testAgainButton.setPrefWidth(120);
+		testAgainButton.setDefaultButton(true);
 		gridPane.add(testAgainButton, 1, 4);
 		GridPane.setMargin(testAgainButton, new Insets(0, 0, 0, -170));
 		testAgainButton.setOnAction(new EventHandlers().testWindow());
@@ -118,17 +119,17 @@ public class WindowItems
 		Image playerImage = new Image(
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/User_icon_1.svg/768px-User_icon_1.svg.png",
 				100, 100, false, true);
-		
+
 		ImageView[] playerImages = new ImageView[5];
 		for (int i = 0; i < playerImages.length; i++)
 			playerImages[i] = new ImageView(playerImage);
-		
+
 		gridPane.add(playerImages[0], 1, 2);
 		gridPane.add(playerImages[1], 0, 3);
 		gridPane.add(playerImages[2], 2, 3);
 		gridPane.add(playerImages[3], 0, 4);
 		gridPane.add(playerImages[4], 2, 4);
-		
+
 		GridPane.setMargin(playerImages[0], new Insets(-50, 0, 0, -160));
 		GridPane.setMargin(playerImages[1], new Insets(-20, 0, 0, 70));
 		GridPane.setMargin(playerImages[2], new Insets(-20, 0, 0, 0));
@@ -139,27 +140,29 @@ public class WindowItems
 		for (int i = 0; i < playerLabels.length; i++)
 			playerLabels[i] = JavaFXHelper.makeLabel("Score: " + players[i].score, 20);
 		Label tiesLabel = JavaFXHelper.makeLabel("Ties: " + Logic.getTies(), 25);
-		
+
 		gridPane.add(playerLabels[0], 1, 2);
 		gridPane.add(playerLabels[1], 0, 3);
 		gridPane.add(playerLabels[2], 2, 3);
 		gridPane.add(playerLabels[3], 0, 4);
 		gridPane.add(playerLabels[4], 2, 4);
 		gridPane.add(tiesLabel, 1, 3);
-		
+
 		GridPane.setMargin(playerLabels[0], new Insets(-185, 0, 0, -165));
 		GridPane.setMargin(playerLabels[1], new Insets(-150, 0, 0, 80));
 		GridPane.setMargin(playerLabels[2], new Insets(-150, 0, 0, 0));
 		GridPane.setMargin(playerLabels[3], new Insets(-130, 0, 0, 80));
 		GridPane.setMargin(playerLabels[4], new Insets(-130, 0, 0, 0));
 		GridPane.setMargin(tiesLabel, new Insets(0, 0, 0, -165));
-		
+
 		String winnerScore = getWinner();
 		for (int i = 0; i < playerLabels.length; i++)
 		{
-			if (playerLabels[i].getText().equals(winnerScore)) {
+			if (playerLabels[i].getText().equals(winnerScore))
+			{
 				playerLabels[i].setTextFill(Color.GREEN);
-				playerLabels[i].setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+				playerLabels[i].setBackground(
+						new Background(new BackgroundFill(Color.ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 			}
 		}
 	}
@@ -169,14 +172,14 @@ public class WindowItems
 		for (int i = 0; i < players.length; i++)
 			players[i] = new Player();
 
-		long start = System.nanoTime();
+		long start = System.currentTimeMillis();
 		Logic.playGame(players, numGames);
 
 		while (equalScoreExists())
 			Logic.playGame(players, numGames);
 
-		System.out.println( // 1 second = 1_000_000_000 nanoseconds
-				"Gameplay runtime took: " + ((double) (System.nanoTime() - start) / 1_000_000_000) + " seconds");
+		// Round runtime from milliseconds to seconds
+		System.out.println("Gameplay runtime took: " + ((double) (System.currentTimeMillis() - start) / 1000) + " seconds");
 
 	}
 
