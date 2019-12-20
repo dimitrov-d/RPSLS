@@ -1,5 +1,6 @@
 package Helpers;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import Logic.Logic;
 import Logic.Player;
@@ -89,7 +90,21 @@ public class WindowItems
 		dialog.setContentText("Enter here:");
 
 		Optional<String> numGames = dialog.showAndWait();
+		try
+		{
+			numGames.get();
+		}
+		catch (NoSuchElementException e)
+		{
+			gridPane.getScene().getWindow().hide();
+			return;
+		}
 		numGames = validateInput(numGames);
+		if (numGames == null)
+		{
+			gridPane.getScene().getWindow().hide();
+			return;
+		}
 		initiatePlayers(players, Integer.parseInt(numGames.get()));
 
 		Label number = JavaFXHelper.makeLabel("Number of games per player: " + numGames.get(), 20);
@@ -179,7 +194,8 @@ public class WindowItems
 			Logic.playGame(players, numGames);
 
 		// Round runtime from milliseconds to seconds
-		System.out.println("Gameplay runtime took: " + ((double) (System.currentTimeMillis() - start) / 1000) + " seconds");
+		System.out.println(
+				"Gameplay runtime took: " + ((double) (System.currentTimeMillis() - start) / 1000) + " seconds");
 
 	}
 
@@ -205,10 +221,20 @@ public class WindowItems
 
 	private static Optional<String> validateInput(Optional<String> input)
 	{
+
 		while (!input.get().matches("^\\d+$")) // Only numbers and non-empty input
 		{
 			dialog.setHeaderText("Please enter a valid number!");
 			input = dialog.showAndWait();
+			
+			try
+			{
+				input.get();
+			}
+			catch (NoSuchElementException e)
+			{
+				return null;
+			}
 		}
 
 		return input;
