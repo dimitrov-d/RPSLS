@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 public class WindowItems
 {
@@ -31,6 +32,7 @@ public class WindowItems
 
 	static Player[] players = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
+	static Stage currentStage;
 
 	public static void addMainWindowItems(GridPane gridPane)
 	{
@@ -85,24 +87,23 @@ public class WindowItems
 
 	protected static void addTestWindowItems(GridPane gridPane)
 	{
+		currentStage = (Stage) gridPane.getScene().getWindow();
 		dialog.setTitle("Input");
 		dialog.setHeaderText("How many games should each player play?");
 		dialog.setContentText("Enter here:");
 
 		Optional<String> numGames = dialog.showAndWait();
-		try
+		if (checkForInput(numGames))
+			numGames = validateInput(numGames);
+		else
 		{
-			numGames.get();
-		}
-		catch (NoSuchElementException e)
-		{
-			gridPane.getScene().getWindow().hide();
+			currentStage.close();
 			return;
 		}
-		numGames = validateInput(numGames);
-		if (numGames == null)
+
+		if (numGames == null) // Cancelled during validation
 		{
-			gridPane.getScene().getWindow().hide();
+			currentStage.close();
 			return;
 		}
 		initiatePlayers(players, Integer.parseInt(numGames.get()));
@@ -226,18 +227,26 @@ public class WindowItems
 		{
 			dialog.setHeaderText("Please enter a valid number!");
 			input = dialog.showAndWait();
-			
-			try
-			{
-				input.get();
-			}
-			catch (NoSuchElementException e)
-			{
+
+			if (!checkForInput(input))
 				return null;
-			}
 		}
 
 		return input;
+	}
+
+	private static boolean checkForInput(Optional<String> input)
+	{
+		try
+		{
+			input.get();
+		}
+		catch (NoSuchElementException e)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 }
