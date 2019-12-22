@@ -49,7 +49,7 @@ public class WindowItems
 
 		Button playButton = JavaFXHelper.makeButton("Play");
 		gridPane.add(playButton, 0, 2);
-		playButton.setOnAction(new EventHandlers().openNewWindow());
+		playButton.setOnAction(new EventHandlers().playWindow());
 		GridPane.setHalignment(playButton, HPos.CENTER);
 
 		Button testButton = JavaFXHelper.makeButton("Test ");
@@ -61,6 +61,10 @@ public class WindowItems
 		gridPane.add(howToPlay, 0, 4);
 		howToPlay.setOnAction(new EventHandlers().howToPlayWindow());
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
+	}
+	
+	protected static void addPlayWindowItems(GridPane gridPane) {
+		gridPane.setAlignment(Pos.CENTER);
 	}
 
 	protected static void addInstructionWindowItems(GridPane gridPane)

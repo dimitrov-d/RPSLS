@@ -4,21 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class EventHandlers
 {
-	protected EventHandler<ActionEvent> openNewWindow()
+	protected EventHandler<ActionEvent> playWindow()
 	{
 		return event ->
 		{
 			Stage stage = new Stage();
-			stage.setTitle("My New Stage Title");
-			stage.setScene(new Scene(new Button("click"), 600, 700));
+			stage.setTitle("Play Game");
+			GridPane gridPane = JavaFXHelper.createGridPane();
+			Scene scene = new Scene(gridPane, 610, 700);
+			stage.setScene(scene);
+			stage.setResizable(false);
 			stage.show();
-			((Node) event.getSource()).getScene().getWindow().hide();
+			WindowItems.addPlayWindowItems(gridPane);
 		};
 	}
 
