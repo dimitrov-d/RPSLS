@@ -3,11 +3,13 @@ package Helpers;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import Logic.Logic;
+import Logic.Logic.Element;
 import Logic.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -62,9 +64,24 @@ public class WindowItems
 		howToPlay.setOnAction(new EventHandlers().howToPlayWindow());
 		GridPane.setHalignment(howToPlay, HPos.CENTER);
 	}
-	
-	protected static void addPlayWindowItems(GridPane gridPane) {
-		gridPane.setAlignment(Pos.CENTER);
+
+	protected static void addPlayWindowItems(GridPane gridPane)
+	{
+		int score = 0;
+		Label scoreLabel = JavaFXHelper.makeLabel("Score", 30);
+		
+		Element[] elements =
+		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
+		ComboBox<String> items = new ComboBox<String>();
+		for (Element element : elements)
+		{
+			items.getItems().add(element.toString());
+		}
+		GridPane.setHalignment(scoreLabel, HPos.CENTER);
+		gridPane.add(scoreLabel, 0, 0);
+		GridPane.setMargin(scoreLabel, new Insets(100,0,0,250));
+		gridPane.add(items, 0, 2);
+		GridPane.setMargin(items, new Insets(100,0,0,150));
 	}
 
 	protected static void addInstructionWindowItems(GridPane gridPane)

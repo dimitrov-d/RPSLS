@@ -7,7 +7,7 @@ public class Logic
 {
 	private static int ties = 0;
 
-	protected enum Element
+	public enum Element
 	{
 		ROCK, PAPER, SCISSORS, LIZARD, SPOCK
 	}
