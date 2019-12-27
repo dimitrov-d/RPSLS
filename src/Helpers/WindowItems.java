@@ -72,16 +72,23 @@ public class WindowItems
 		
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
-		ComboBox<String> items = new ComboBox<String>();
+		ComboBox<String> comboBox = new ComboBox<String>();
+		comboBox.setPrefWidth(200);
 		for (Element element : elements)
 		{
-			items.getItems().add(element.toString());
+			comboBox.getItems().add(element.toString());
 		}
 		GridPane.setHalignment(scoreLabel, HPos.CENTER);
 		gridPane.add(scoreLabel, 0, 0);
 		GridPane.setMargin(scoreLabel, new Insets(100,0,0,250));
-		gridPane.add(items, 0, 2);
-		GridPane.setMargin(items, new Insets(100,0,0,150));
+		gridPane.add(comboBox, 0, 2);
+		GridPane.setMargin(comboBox, new Insets(-60,0,0,60));
+		
+		
+		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:" , 20);
+		gridPane.add(hintLabel, 0, 1);
+		GridPane.setHalignment(hintLabel, HPos.LEFT);
+		GridPane.setMargin(hintLabel, new Insets(100,0,0,50));
 	}
 
 	protected static void addInstructionWindowItems(GridPane gridPane)
