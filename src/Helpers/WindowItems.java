@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 
 public class WindowItems
 {
+	static Image image;
 
 	private WindowItems()
 	{
@@ -67,26 +68,39 @@ public class WindowItems
 
 	protected static void addPlayWindowItems(GridPane gridPane)
 	{
-		int score = 0;
+
 		gridPane.setAlignment(Pos.CENTER);
 		Label scoreLabel = JavaFXHelper.makeLabel("Score", 30);
+
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
 		ComboBox<String> comboBox = new ComboBox<String>();
-		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:" , 25);
-		
-		
+		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:", 25);
+
 		comboBox.setPrefWidth(220);
 		for (Element element : elements)
 			comboBox.getItems().add(element.toString());
-		GridPane.setMargin(hintLabel, new Insets(-100,0,0,0));
-		GridPane.setMargin(comboBox, new Insets(-100,0,0,0));
-		GridPane.setMargin(scoreLabel, new Insets(100,0,0,0));
-		
-		gridPane.add(scoreLabel, 0, 3);
+		GridPane.setMargin(hintLabel, new Insets(-100, 0, 0, 0));
+		GridPane.setMargin(comboBox, new Insets(-100, 0, 0, 0));
+		GridPane.setMargin(scoreLabel, new Insets(100, 0, 0, 0));
+
+//		gridPane.add(scoreLabel, 0, 3);
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
-		
+
+		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) ->
+		{
+			image = new Image(
+					"https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
+					200, 280, false, true);
+			ImageView imgview = new ImageView(image);
+			gridPane.add(imgview,0,2);
+
+		});
+
+		int score = 0;
+		Element computerElement = Logic.getRandomElement();
+
 	}
 
 	protected static void addInstructionWindowItems(GridPane gridPane)

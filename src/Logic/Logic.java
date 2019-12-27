@@ -12,7 +12,7 @@ public class Logic
 		ROCK, PAPER, SCISSORS, LIZARD, SPOCK
 	}
 
-	protected static Element getRandomElement()
+	public static Element getRandomElement()
 	{
 		return Element.values()[new Random().nextInt(Element.values().length)];
 	}
