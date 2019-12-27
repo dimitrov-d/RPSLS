@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 public class WindowItems
 {
-	static Image image;
+	static Image elementImage;
 
 	private WindowItems()
 	{
@@ -88,13 +88,31 @@ public class WindowItems
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
 
-		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) ->
+		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
-			image = new Image(
-					"https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
-					200, 280, false, true);
-			ImageView imgview = new ImageView(image);
-			gridPane.add(imgview,0,2);
+			switch (element)
+			{
+			case "ROCK":
+				elementImage = new Image(Hyperlinks.ROCK_ICON, 200, 200, false, true);
+				break;
+			case "PAPER":
+				elementImage = new Image(Hyperlinks.PAPER_ICON, 200, 200, false, true);
+				break;
+			case "SCISSORS":
+				elementImage = new Image(Hyperlinks.SCISSORS_ICON, 200, 200, false, true);
+				break;
+			case "LIZARD":
+				elementImage = new Image(Hyperlinks.LIZARD_ICON, 200, 200, false, true);
+				break;
+			case "SPOCK":
+				elementImage = new Image(Hyperlinks.SPOCK_ICON, 200, 200, false, true);
+				break;
+			default:
+				break;
+			}
+
+			ImageView elementView = new ImageView(elementImage);
+			gridPane.add(elementView, 0, 2);
 
 		});
 
@@ -106,9 +124,7 @@ public class WindowItems
 	protected static void addInstructionWindowItems(GridPane gridPane)
 	{
 		gridPane.setAlignment(Pos.CENTER);
-		Image image = new Image(
-				"https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png",
-				400, 580, false, true);
+		Image image = new Image(Hyperlinks.INSTRUCTIONS_IMAGE, 400, 580, false, true);
 		ImageView imageView = new ImageView(image);
 		gridPane.add(imageView, 0, 0);
 		String instructions = JavaFXHelper.getInstructions();
@@ -172,10 +188,7 @@ public class WindowItems
 		GridPane.setMargin(testAgainButton, new Insets(0, 0, 0, -170));
 		testAgainButton.setOnAction(new EventHandlers().testWindow());
 
-		Image playerImage = new Image(
-				"https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/User_icon_1.svg/768px-User_icon_1.svg.png",
-				100, 100, false, true);
-
+		Image playerImage = new Image(Hyperlinks.PLAYER_ICON, 100, 100, false, true);
 		ImageView[] playerImages = new ImageView[5];
 		for (int i = 0; i < playerImages.length; i++)
 			playerImages[i] = new ImageView(playerImage);
