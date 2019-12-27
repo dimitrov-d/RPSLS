@@ -87,32 +87,44 @@ public class WindowItems
 //		gridPane.add(scoreLabel, 0, 3);
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
-
+		
+		
+		Label youChose = JavaFXHelper.makeLabel("You chose:", 20);
+		youChose.setVisible(false);
+		GridPane.setMargin(youChose, new Insets(50, 0, -50, -115));
+		gridPane.add(youChose, 0, 1);
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
 			switch (element)
 			{
 			case "ROCK":
-				elementImage = new Image(Hyperlinks.ROCK_ICON, 200, 200, false, true);
+				elementImage = new Image(Hyperlinks.ROCK_ICON, 150, 150, false, true);
+				youChose.setVisible(true);
 				break;
 			case "PAPER":
-				elementImage = new Image(Hyperlinks.PAPER_ICON, 200, 200, false, true);
+				elementImage = new Image(Hyperlinks.PAPER_ICON, 150, 150, false, true);
+				youChose.setVisible(true);
 				break;
 			case "SCISSORS":
-				elementImage = new Image(Hyperlinks.SCISSORS_ICON, 200, 200, false, true);
+				elementImage = new Image(Hyperlinks.SCISSORS_ICON, 150, 150, false, true);
+				youChose.setVisible(true);
 				break;
 			case "LIZARD":
-				elementImage = new Image(Hyperlinks.LIZARD_ICON, 200, 200, false, true);
+				elementImage = new Image(Hyperlinks.LIZARD_ICON, 150, 150, false, true);
+				youChose.setVisible(true);
 				break;
 			case "SPOCK":
-				elementImage = new Image(Hyperlinks.SPOCK_ICON, 200, 200, false, true);
+				elementImage = new Image(Hyperlinks.SPOCK_ICON, 150, 150, false, true);
+				youChose.setVisible(true);
 				break;
 			default:
 				break;
 			}
+			
 
 			ImageView elementView = new ImageView(elementImage);
 			gridPane.add(elementView, 0, 2);
+			GridPane.setMargin(elementView, new Insets(0, 0, 0, -130));
 
 		});
 
