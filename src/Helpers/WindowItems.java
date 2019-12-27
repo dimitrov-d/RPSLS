@@ -68,27 +68,25 @@ public class WindowItems
 	protected static void addPlayWindowItems(GridPane gridPane)
 	{
 		int score = 0;
+		gridPane.setAlignment(Pos.CENTER);
 		Label scoreLabel = JavaFXHelper.makeLabel("Score", 30);
-		
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
 		ComboBox<String> comboBox = new ComboBox<String>();
-		comboBox.setPrefWidth(200);
+		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:" , 25);
+		
+		
+		comboBox.setPrefWidth(220);
 		for (Element element : elements)
-		{
 			comboBox.getItems().add(element.toString());
-		}
-		GridPane.setHalignment(scoreLabel, HPos.CENTER);
-		gridPane.add(scoreLabel, 0, 0);
-		GridPane.setMargin(scoreLabel, new Insets(100,0,0,250));
-		gridPane.add(comboBox, 0, 2);
-		GridPane.setMargin(comboBox, new Insets(-60,0,0,60));
+		GridPane.setMargin(hintLabel, new Insets(-100,0,0,0));
+		GridPane.setMargin(comboBox, new Insets(-100,0,0,0));
+		GridPane.setMargin(scoreLabel, new Insets(100,0,0,0));
 		
+		gridPane.add(scoreLabel, 0, 3);
+		gridPane.add(hintLabel, 0, 0);
+		gridPane.add(comboBox, 0, 1);
 		
-		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:" , 20);
-		gridPane.add(hintLabel, 0, 1);
-		GridPane.setHalignment(hintLabel, HPos.LEFT);
-		GridPane.setMargin(hintLabel, new Insets(100,0,0,50));
 	}
 
 	protected static void addInstructionWindowItems(GridPane gridPane)
