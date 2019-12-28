@@ -26,8 +26,6 @@ import javafx.stage.Stage;
 
 public class WindowItems
 {
-	static Image elementImage;
-
 	private WindowItems()
 	{
 		throw new IllegalStateException("Utility class");
@@ -80,56 +78,28 @@ public class WindowItems
 		comboBox.setPrefWidth(220);
 		for (Element element : elements)
 			comboBox.getItems().add(element.toString());
-		GridPane.setMargin(hintLabel, new Insets(-100, 0, 0, 0));
-		GridPane.setMargin(comboBox, new Insets(-100, 0, 0, 0));
-		GridPane.setMargin(scoreLabel, new Insets(100, 0, 0, 0));
+		GridPane.setMargin(hintLabel, new Insets(-330, 0, 0, 0));
+		GridPane.setMargin(comboBox, new Insets(-400, 0, 0, 0));
 
-//		gridPane.add(scoreLabel, 0, 3);
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
 		
 		
 		Label youChose = JavaFXHelper.makeLabel("You chose:", 20);
 		youChose.setVisible(false);
-		GridPane.setMargin(youChose, new Insets(50, 0, -50, -115));
+		GridPane.setMargin(youChose, new Insets(-250, 0, -50, -115));
 		gridPane.add(youChose, 0, 1);
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
-			switch (element)
-			{
-			case "ROCK":
-				elementImage = new Image(Hyperlinks.ROCK_ICON, 150, 150, false, true);
-				youChose.setVisible(true);
-				break;
-			case "PAPER":
-				elementImage = new Image(Hyperlinks.PAPER_ICON, 150, 150, false, true);
-				youChose.setVisible(true);
-				break;
-			case "SCISSORS":
-				elementImage = new Image(Hyperlinks.SCISSORS_ICON, 150, 150, false, true);
-				youChose.setVisible(true);
-				break;
-			case "LIZARD":
-				elementImage = new Image(Hyperlinks.LIZARD_ICON, 150, 150, false, true);
-				youChose.setVisible(true);
-				break;
-			case "SPOCK":
-				elementImage = new Image(Hyperlinks.SPOCK_ICON, 150, 150, false, true);
-				youChose.setVisible(true);
-				break;
-			default:
-				break;
-			}
 			
-
-			ImageView elementView = new ImageView(elementImage);
+			youChose.setVisible(true);
+			ImageView elementView = handleComboboxSelect(element);
 			gridPane.add(elementView, 0, 2);
-			GridPane.setMargin(elementView, new Insets(0, 0, 0, -130));
+			GridPane.setMargin(elementView, new Insets(-150, 0, 0, -130));
 
 		});
 
 		int score = 0;
-		Element computerElement = Logic.getRandomElement();
 
 	}
 
@@ -283,6 +253,32 @@ public class WindowItems
 				if (players[j].score == players[i].score)
 					return true;
 		return false;
+	}
+	
+	private static ImageView handleComboboxSelect(String element) {
+		Image elementImage;
+		switch (element)
+		{
+		case "ROCK":
+			elementImage = new Image(Hyperlinks.ROCK_ICON, 150, 150, false, true);
+			break;
+		case "PAPER":
+			elementImage = new Image(Hyperlinks.PAPER_ICON, 150, 150, false, true);
+			break;
+		case "SCISSORS":
+			elementImage = new Image(Hyperlinks.SCISSORS_ICON, 150, 150, false, true);
+			break;
+		case "LIZARD":
+			elementImage = new Image(Hyperlinks.LIZARD_ICON, 150, 150, false, true);
+			break;
+		case "SPOCK":
+			elementImage = new Image(Hyperlinks.SPOCK_ICON, 150, 150, false, true);
+			break;
+		default:
+			elementImage = new Image(Hyperlinks.ROCK_ICON, 150, 150, false, true);
+		}
+		
+		return new ImageView(elementImage);
 	}
 
 	private static Optional<String> validateInput(Optional<String> input)
