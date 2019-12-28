@@ -87,7 +87,7 @@ public class WindowItems
 		
 		Label youChose = JavaFXHelper.makeLabel("You chose:", 20);
 		youChose.setVisible(false);
-		GridPane.setMargin(youChose, new Insets(-250, 0, -50, -115));
+		GridPane.setMargin(youChose, new Insets(-250, 0, -50, 0));
 		gridPane.add(youChose, 0, 1);
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
@@ -95,8 +95,12 @@ public class WindowItems
 			youChose.setVisible(true);
 			ImageView elementView = handleComboboxSelect(element);
 			gridPane.add(elementView, 0, 2);
-			GridPane.setMargin(elementView, new Insets(-150, 0, 0, -130));
+			GridPane.setMargin(elementView, new Insets(-150, 0, 0, 0));
 
+			Element computerElement = Logic.getRandomElement();
+			ImageView computerView = handleComboboxSelect(computerElement.toString());
+			gridPane.add(computerView, 2, 2);
+			GridPane.setMargin(computerView, new Insets(-150,0,0,0));
 		});
 
 		int score = 0;
