@@ -1,4 +1,4 @@
-package Helpers;
+package Utility;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -109,6 +109,7 @@ public class WindowItems
 		});
 
 		int score = 0;
+		int computerScore = 0;
 
 	}
 

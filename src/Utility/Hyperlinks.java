@@ -1,4 +1,4 @@
-package Helpers;
+package Utility;
 
 abstract public class Hyperlinks
 {

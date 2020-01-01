@@ -1,4 +1,4 @@
-package Helpers;
+package Utility;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
