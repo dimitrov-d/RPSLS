@@ -1,5 +1,6 @@
 package Utility;
 
+import Windows.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -20,7 +21,7 @@ public class EventHandlers
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
-			WindowItems.addPlayWindowItems(gridPane);
+			PlayWindow.addItems(gridPane);
 		};
 	}
 
@@ -35,7 +36,7 @@ public class EventHandlers
 			stage.setScene(scene);
 			stage.setResizable(false);
 			stage.show();
-			WindowItems.addInstructionWindowItems(gridPane);
+			InstructionWindow.addItems(gridPane);
 		};
 	}
 
@@ -54,7 +55,7 @@ public class EventHandlers
 			Scene scene = new Scene(gridPane, 610, 700);
 			stage.setScene(scene);
 			stage.show();
-			WindowItems.addTestWindowItems(gridPane);
+			TestWindow.addItems(gridPane);
 
 		};
 	}

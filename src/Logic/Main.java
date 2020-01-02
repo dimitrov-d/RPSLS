@@ -1,6 +1,7 @@
 package Logic;
 
 import Utility.*;
+import Windows.MainWindow;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ public class Main extends Application
 		
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
 		GridPane gridPane = JavaFXHelper.createGridPane();
-		WindowItems.addMainWindowItems(gridPane);
+		MainWindow.addItems(gridPane);
 		Scene scene = new Scene(gridPane, 600, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -27,7 +28,6 @@ public class Main extends Application
 		primaryStage.setOnCloseRequest(e ->
 		{
 			Platform.exit();
-			System.exit(0);
 		});
 		
 	}
