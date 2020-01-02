@@ -68,8 +68,6 @@ public class WindowItems
 	{
 
 		gridPane.setAlignment(Pos.CENTER);
-		Label scoreLabel = JavaFXHelper.makeLabel("Score", 30);
-
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
 		ComboBox<String> comboBox = new ComboBox<String>();
@@ -78,8 +76,8 @@ public class WindowItems
 		comboBox.setPrefWidth(220);
 		for (Element element : elements)
 			comboBox.getItems().add(element.toString());
-		GridPane.setMargin(hintLabel, new Insets(-330, 0, 0, 150));
-		GridPane.setMargin(comboBox, new Insets(-400, 0, 0, 150));
+		GridPane.setMargin(hintLabel, new Insets(-330, 0, 0, 120));
+		GridPane.setMargin(comboBox, new Insets(-400, 0, 0, 120));
 
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
@@ -89,8 +87,8 @@ public class WindowItems
 		Label itChose = JavaFXHelper.makeLabel("Computer chose:", 20);
 		youChose.setVisible(false);
 		itChose.setVisible(false);
-		GridPane.setMargin(youChose, new Insets(-220, -50, 0, 0));
-		GridPane.setMargin(itChose, new Insets(-220, 0, 0, 0));
+		GridPane.setMargin(youChose, new Insets(-220, -50, 0, 50));
+		GridPane.setMargin(itChose, new Insets(-220, 20, 0, 0));
 		gridPane.add(youChose, 0, 1);
 		gridPane.add(itChose, 2, 1);
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
@@ -100,15 +98,19 @@ public class WindowItems
 			itChose.setVisible(true);
 			ImageView elementView = handleComboboxSelect(element);
 			gridPane.add(elementView, 0, 2);
-			GridPane.setMargin(elementView, new Insets(-150, 0, 0, 0));
+			GridPane.setMargin(elementView, new Insets(-150, 0, 0, 50));
 
 			Element computerElement = Logic.getRandomElement();
 			ImageView computerView = handleComboboxSelect(computerElement.toString());
 			gridPane.add(computerView, 2, 2);
-			GridPane.setMargin(computerView, new Insets(-150,0,0,0));
+			GridPane.setMargin(computerView, new Insets(-150,50,0,0));
 		});
 
+		
+//		GridPane.setMargin(scoreLabel, new Insets(-150, 0, 0, 50));
 		int score = 0;
+//		Label scoreLabel = JavaFXHelper.makeLabel(score + "", 30);
+//		gridPane.add(scoreLabel, 0, 4);
 		int computerScore = 0;
 
 	}
