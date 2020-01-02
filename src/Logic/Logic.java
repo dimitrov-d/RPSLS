@@ -22,7 +22,7 @@ public class Logic
 		Arrays.asList(players).stream().forEach(p -> p.element = getRandomElement());
 	}
 
-	protected static Element getWinnerElement(Element el1, Element el2)
+	public static Element getWinnerElement(Element el1, Element el2)
 	{
 		switch (el1)
 		{

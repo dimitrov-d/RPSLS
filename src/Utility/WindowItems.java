@@ -34,6 +34,7 @@ public class WindowItems
 	static Player[] players = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
 	static Stage currentStage;
+	static Label outcome;
 
 	public static void addMainWindowItems(GridPane gridPane)
 	{
@@ -81,8 +82,7 @@ public class WindowItems
 
 		gridPane.add(hintLabel, 0, 0);
 		gridPane.add(comboBox, 0, 1);
-		
-		
+
 		Label youChose = JavaFXHelper.makeLabel("You chose:", 20);
 		Label itChose = JavaFXHelper.makeLabel("Computer chose:", 20);
 		youChose.setVisible(false);
@@ -91,29 +91,36 @@ public class WindowItems
 		GridPane.setMargin(itChose, new Insets(-50, 20, 0, 0));
 		gridPane.add(youChose, 0, 1);
 		gridPane.add(itChose, 2, 1);
-		
+
 		int score = 0;
 		int computerScore = 0;
 		Label yourScore = JavaFXHelper.makeLabel(score + "", 30);
 		Label itsScore = JavaFXHelper.makeLabel(computerScore + "", 30);
 		Label scoreLabel = JavaFXHelper.makeLabel("Score" + "", 30);
+		outcome = JavaFXHelper.makeLabel("", 25);
+		outcome.setVisible(false);
 		scoreLabel.setVisible(false);
-		gridPane.add(scoreLabel, 2, 4);
+		gridPane.add(scoreLabel, 1, 4);
 		GridPane.setHalignment(scoreLabel, HPos.CENTER);
-		GridPane.setMargin(scoreLabel, new Insets(-200,0,0,-400));
+		GridPane.setMargin(scoreLabel, new Insets(-200, 0, 0, -400));
+		gridPane.add(outcome, 2, 2);
+		GridPane.setMargin(outcome, new Insets(-80, 0, 0, -150));
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
 			youChose.setVisible(true);
 			itChose.setVisible(true);
 			scoreLabel.setVisible(true);
+
 			ImageView elementView = handleComboboxSelect(element);
 			gridPane.add(elementView, 0, 2);
-			GridPane.setMargin(elementView, new Insets(-50, 0, 0, 50));
+			GridPane.setMargin(elementView, new Insets(-80, 0, 0, 50));
 
 			Element computerElement = Logic.getRandomElement();
 			ImageView computerView = handleComboboxSelect(computerElement.toString());
 			gridPane.add(computerView, 2, 2);
-			GridPane.setMargin(computerView, new Insets(-50,50,0,0));
+			GridPane.setMargin(computerView, new Insets(-80, 50, 0, 0));
+
+			evaluateWinner(element, computerElement);
 		});
 
 	}
@@ -136,6 +143,24 @@ public class WindowItems
 		text.setBackground(new Background(new BackgroundFill(Color.rgb(20, 19, 60), CornerRadii.EMPTY, Insets.EMPTY)));
 		gridPane.add(text, 1, 0);
 
+	}
+
+	protected static void evaluateWinner(String element, Element computerElement)
+	{
+		Element yourElement = Enum.valueOf(Element.class, element);
+		if (yourElement.equals(computerElement))
+		{
+			outcome.setText("Tie");
+			outcome.setStyle("-fx-text-fill: grey;");
+		} else
+		{
+			Element el = Logic.getWinnerElement(yourElement, computerElement);
+			boolean youWin = el.name().equals(yourElement.toString());
+			outcome.setText(youWin ? "You Win" : "Computer\n Wins");
+			outcome.setStyle(youWin ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+		}
+		outcome.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+		outcome.setVisible(true);
 	}
 
 	protected static void addTestWindowItems(GridPane gridPane)
@@ -269,8 +294,9 @@ public class WindowItems
 					return true;
 		return false;
 	}
-	
-	private static ImageView handleComboboxSelect(String element) {
+
+	private static ImageView handleComboboxSelect(String element)
+	{
 		Image elementImage;
 		switch (element)
 		{
@@ -292,7 +318,7 @@ public class WindowItems
 		default:
 			elementImage = new Image(Hyperlinks.ROCK_ICON, 150, 150, false, true);
 		}
-		
+
 		return new ImageView(elementImage);
 	}
 
