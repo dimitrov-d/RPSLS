@@ -34,7 +34,9 @@ public class WindowItems
 	static Player[] players = new Player[5];
 	static TextInputDialog dialog = new TextInputDialog("5");
 	static Stage currentStage;
-	static Label outcome;
+	static Label outcome = JavaFXHelper.makeLabel("", 25);
+	static int score = 0;
+	static int opponentScore = 0;
 
 	public static void addMainWindowItems(GridPane gridPane)
 	{
@@ -67,44 +69,46 @@ public class WindowItems
 
 	protected static void addPlayWindowItems(GridPane gridPane)
 	{
-
+		ComboBox<String> comboBox = new ComboBox<String>();
 		gridPane.setAlignment(Pos.CENTER);
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
-		ComboBox<String> comboBox = new ComboBox<String>();
-		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:", 25);
-
-		comboBox.setPrefWidth(220);
 		for (Element element : elements)
 			comboBox.getItems().add(element.toString());
-		GridPane.setMargin(hintLabel, new Insets(-130, 0, 0, 120));
-		GridPane.setMargin(comboBox, new Insets(-200, 0, 0, 120));
 
-		gridPane.add(hintLabel, 0, 0);
-		gridPane.add(comboBox, 0, 1);
-
+		Label hintLabel = JavaFXHelper.makeLabel("Choose an element:", 25);
 		Label youChose = JavaFXHelper.makeLabel("You chose:", 20);
 		Label itChose = JavaFXHelper.makeLabel("Computer chose:", 20);
+		Label yourScore = JavaFXHelper.makeLabel("", 40);
+		Label computerScore = JavaFXHelper.makeLabel("", 40);
+		Label scoreLabel = JavaFXHelper.makeLabel("Score" + "", 30);
+
+		comboBox.setPrefWidth(220);
 		youChose.setVisible(false);
 		itChose.setVisible(false);
+
+		GridPane.setMargin(hintLabel, new Insets(-130, 0, 0, 120));
+		GridPane.setMargin(comboBox, new Insets(-200, 0, 0, 120));
 		GridPane.setMargin(youChose, new Insets(-50, -50, 0, 50));
 		GridPane.setMargin(itChose, new Insets(-50, 20, 0, 0));
+		GridPane.setMargin(outcome, new Insets(-80, 0, 0, -150));
+		GridPane.setMargin(scoreLabel, new Insets(-170, -190, 0, 0));
+		GridPane.setMargin(yourScore, new Insets(0, 0, -100, 100));
+		GridPane.setMargin(computerScore, new Insets(0, 0, -100, 50));
+		GridPane.setHalignment(scoreLabel, HPos.CENTER);
+
 		gridPane.add(youChose, 0, 1);
 		gridPane.add(itChose, 2, 1);
-
-		int score = 0;
-		int computerScore = 0;
-		Label yourScore = JavaFXHelper.makeLabel(score + "", 30);
-		Label itsScore = JavaFXHelper.makeLabel(computerScore + "", 30);
-		Label scoreLabel = JavaFXHelper.makeLabel("Score" + "", 30);
-		outcome = JavaFXHelper.makeLabel("", 25);
+		gridPane.add(hintLabel, 0, 0);
+		gridPane.add(comboBox, 0, 1);
+		gridPane.add(scoreLabel, 0, 4);
+		gridPane.add(outcome, 2, 2);
+		gridPane.add(yourScore, 0, 3);
+		gridPane.add(computerScore, 2, 3);
+		
 		outcome.setVisible(false);
 		scoreLabel.setVisible(false);
-		gridPane.add(scoreLabel, 1, 4);
-		GridPane.setHalignment(scoreLabel, HPos.CENTER);
-		GridPane.setMargin(scoreLabel, new Insets(-200, 0, 0, -400));
-		gridPane.add(outcome, 2, 2);
-		GridPane.setMargin(outcome, new Insets(-80, 0, 0, -150));
+
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{
 			youChose.setVisible(true);
@@ -121,6 +125,8 @@ public class WindowItems
 			GridPane.setMargin(computerView, new Insets(-80, 50, 0, 0));
 
 			evaluateWinner(element, computerElement);
+			yourScore.setText(score + "");
+			computerScore.setText(opponentScore + "");
 		});
 
 	}
@@ -158,6 +164,8 @@ public class WindowItems
 			boolean youWin = el.name().equals(yourElement.toString());
 			outcome.setText(youWin ? "You Win" : "Computer\n Wins");
 			outcome.setStyle(youWin ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+			
+			if (youWin) score++; else opponentScore++;
 		}
 		outcome.setBackground(new Background(new BackgroundFill(Color.ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		outcome.setVisible(true);
