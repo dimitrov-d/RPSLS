@@ -30,7 +30,7 @@ public class JavaFXHelper
 		return gridPane;
 	}
 
-	protected static Button makeButton(String text)
+	public static Button makeButton(String text)
 	{
 		Button button = new Button(text);
 		button.setPrefHeight(60);
@@ -40,7 +40,7 @@ public class JavaFXHelper
 		return button;
 	}
 	
-	protected static Label makeLabel(String text, int size) 
+	public static Label makeLabel(String text, int size) 
 	{
 		Label label = new Label(text);
 		label.setFont(Font.font("Arial", FontWeight.BOLD, size));
@@ -59,7 +59,7 @@ public class JavaFXHelper
 		return new Background(woodBackground);
 	}
 
-	protected static String getInstructions()
+	public static String getInstructions()
 	{
 		return "The game is an extension of the game Rock, Paper, Scissors. \n" + "Every player picks an element. \n"
 				+ "Every player plays the given amount \n"

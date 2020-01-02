@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class EventHandlers
 {
-	protected EventHandler<ActionEvent> playWindow()
+	public EventHandler<ActionEvent> playWindow()
 	{
 		return event ->
 		{
@@ -24,7 +24,7 @@ public class EventHandlers
 		};
 	}
 
-	protected EventHandler<ActionEvent> howToPlayWindow()
+	public EventHandler<ActionEvent> howToPlayWindow()
 	{
 		return event ->
 		{
@@ -39,7 +39,7 @@ public class EventHandlers
 		};
 	}
 
-	protected EventHandler<ActionEvent> testWindow()
+	public EventHandler<ActionEvent> testWindow()
 	{
 		return event ->
 		{
