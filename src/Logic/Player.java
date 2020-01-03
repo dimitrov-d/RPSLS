@@ -4,8 +4,8 @@ import Logic.Logic.Element;
 
 public class Player
 {
-	public Element element;
-	public int score;
+	private Element element;
+	private int score;
 
 	public Player()
 	{
@@ -17,5 +17,21 @@ public class Player
 	{
 		score++;
 	}
+
+	public Element getElement()
+	{
+		return element;
+	}
+	
+	public void setElement(Element el)
+	{
+		element = el;
+	}
+
+	public int getScore()
+	{
+		return score;
+	}
+
 
 }

@@ -15,21 +15,17 @@ public class Main extends Application
 	{
 		showStartScreen(primaryStage);
 	}
-	
-	public static void showStartScreen(Stage primaryStage) {
-		
+
+	public static void showStartScreen(Stage primaryStage)
+	{
 		primaryStage.setTitle("Rock Paper Scissors Lizard Spock");
 		GridPane gridPane = JavaFXHelper.createGridPane();
 		MainWindow.addItems(gridPane);
 		Scene scene = new Scene(gridPane, 600, 700);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(e -> Platform.exit());
 
-		primaryStage.setOnCloseRequest(e ->
-		{
-			Platform.exit();
-		});
-		
 	}
 
 	public static void main(String[] args)

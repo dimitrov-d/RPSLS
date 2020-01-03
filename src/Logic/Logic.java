@@ -19,7 +19,7 @@ public class Logic
 
 	protected static void randomizePlayers(Player[] players)
 	{
-		Arrays.asList(players).stream().forEach(p -> p.element = getRandomElement());
+		Arrays.asList(players).stream().forEach(p -> p.setElement(getRandomElement()));
 	}
 
 	public static Element getWinnerElement(Element el1, Element el2)
@@ -105,10 +105,10 @@ public class Logic
 
 	public static void getWinnerPlayer(Player p1, Player p2)
 	{
-		if (p1.element == p2.element)
+		if (p1.getElement() == p2.getElement())
 			return;
 
-		if (p1.element == getWinnerElement(p1.element, p2.element))
+		if (p1.getElement() == getWinnerElement(p1.getElement(), p2.getElement()))
 			p1.incrementScore();
 		else
 			p2.incrementScore();
@@ -120,30 +120,27 @@ public class Logic
 	{
 		resetTies();
 		for (int i = 0; i < player.length; i++)
-		{
 			for (int j = 0; j < player.length; j++)
-			{
 				for (int z = 0; z < numGames; z++)
 				{
 					if (i == j)
 						break;
 
-					if (player[i].element == player[j].element)
+					if (player[i].getElement() == player[j].getElement())
 						ties++;
 
 					getWinnerPlayer(player[i], player[j]);
 					randomizePlayers(player);
 				}
-			}
-		}
 	}
 
 	public static int getTies()
 	{
 		return ties;
 	}
-	
-	private static void resetTies() {
+
+	private static void resetTies()
+	{
 		ties = 0;
 	}
 }

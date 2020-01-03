@@ -1,9 +1,10 @@
 package Utility;
 
-abstract public class Hyperlinks
+public abstract class Hyperlinks
 {
 	// Used to define constants for hyperlinks of the images
-
+	
+	public static final String BACKGROUND = "https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg";
 	public static final String INSTRUCTIONS_IMAGE = "https://d3qdvvkm3r2z1i.cloudfront.net/media/catalog/product/cache/1/image/1800x/6b9ffbf72458f4fd2d3cb995d92e8889/r/o/rockpaperscissorslizardspock_newthumb.png";
 	public static final String PLAYER_ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/User_icon_1.svg/768px-User_icon_1.svg.png";
 	public static final String PAPER_ICON = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Fc9oES1HcstULHCRU3lCvjMgs5_eWFNbwhYXupyN91Xg5tE9&s";

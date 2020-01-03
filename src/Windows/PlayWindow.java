@@ -31,7 +31,7 @@ public class PlayWindow
 
 	public static void addItems(GridPane gridPane)
 	{
-		ComboBox<String> comboBox = new ComboBox<String>();
+		ComboBox<String> comboBox = new ComboBox<>();
 		gridPane.setAlignment(Pos.CENTER);
 		Element[] elements =
 		{ Element.ROCK, Element.PAPER, Element.SCISSORS, Element.LIZARD, Element.SPOCK };
@@ -48,6 +48,8 @@ public class PlayWindow
 		comboBox.setPrefWidth(220);
 		youChose.setVisible(false);
 		itChose.setVisible(false);
+		outcome.setVisible(false);
+		scoreLabel.setVisible(false);
 
 		GridPane.setMargin(hintLabel, new Insets(-130, 0, 0, 120));
 		GridPane.setMargin(comboBox, new Insets(-200, 0, 0, 120));
@@ -67,9 +69,6 @@ public class PlayWindow
 		gridPane.add(outcome, 2, 2);
 		gridPane.add(yourScore, 0, 3);
 		gridPane.add(computerScore, 2, 3);
-
-		outcome.setVisible(false);
-		scoreLabel.setVisible(false);
 
 		comboBox.getSelectionModel().selectedItemProperty().addListener((options, oldValue, element) ->
 		{

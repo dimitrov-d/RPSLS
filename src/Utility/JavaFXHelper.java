@@ -15,12 +15,12 @@ import javafx.scene.text.FontWeight;
 
 public class JavaFXHelper
 {
-	
+
 	private JavaFXHelper()
 	{
 		throw new IllegalStateException("Utility class");
 	}
-	
+
 	public static GridPane createGridPane()
 	{
 		GridPane gridPane = new GridPane();
@@ -39,21 +39,19 @@ public class JavaFXHelper
 
 		return button;
 	}
-	
-	public static Label makeLabel(String text, int size) 
+
+	public static Label makeLabel(String text, int size)
 	{
 		Label label = new Label(text);
 		label.setFont(Font.font("Arial", FontWeight.BOLD, size));
 		label.setTextFill(Color.ANTIQUEWHITE);
-		
+
 		return label;
 	}
 
 	protected static Background getBackground()
 	{
-		BackgroundImage woodBackground = new BackgroundImage(
-				new Image("https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg",
-						32, 32, false, true),
+		BackgroundImage woodBackground = new BackgroundImage(new Image(Hyperlinks.BACKGROUND, 32, 32, false, true),
 				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 		return new Background(woodBackground);
@@ -62,8 +60,7 @@ public class JavaFXHelper
 	public static String getInstructions()
 	{
 		return "The game is an extension of the game Rock, Paper, Scissors. \n" + "Every player picks an element. \n"
-				+ "Every player plays the given amount \n"
-				+ "of games with each other player. \n"
+				+ "Every player plays the given amount \n" + "of games with each other player. \n"
 				+ "The winner is the player who beats the other players. \n"
 				+ "In case of a tie, the game repeats until we find a winner. \n \n"
 				+ "The rules of the game are as follows: \n" + "- Scissors cuts Paper \n" + "- Paper covers Rock \n"

@@ -2,7 +2,6 @@ package Windows;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 import Logic.Logic;
 import Logic.Player;
 import Utility.EventHandlers;
@@ -100,7 +99,7 @@ public class TestWindow
 
 		Label[] playerLabels = new Label[5];
 		for (int i = 0; i < playerLabels.length; i++)
-			playerLabels[i] = JavaFXHelper.makeLabel("Score: " + players[i].score, 20);
+			playerLabels[i] = JavaFXHelper.makeLabel("Score: " + players[i].getScore(), 20);
 		Label tiesLabel = JavaFXHelper.makeLabel("Ties: " + Logic.getTies(), 25);
 
 		gridPane.add(playerLabels[0], 1, 2);
@@ -151,8 +150,8 @@ public class TestWindow
 		int maxScore = 0;
 
 		for (int i = 0; i < players.length; i++)
-			if (maxScore < players[i].score)
-				maxScore = players[i].score;
+			if (maxScore < players[i].getScore())
+				maxScore = players[i].getScore();
 
 		return ("Score: " + maxScore);
 	}
@@ -161,7 +160,7 @@ public class TestWindow
 	{
 		for (int i = 0; i < players.length; i++)
 			for (int j = i + 1; j < players.length; j++)
-				if (players[j].score == players[i].score)
+				if (players[j].getScore() == players[i].getScore())
 					return true;
 		return false;
 	}
