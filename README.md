@@ -6,8 +6,8 @@ The game keeps track of the score when you play, or shows each player's score wh
 
 **Compiling and Execution**
 
-To execute enter the directory where the project is located, navigate to /src folder and run the following command: 
-**java Logic.Main**
+To execute enter the directory where the project is located, navigate to /src folder and run the following command: <br/> 
+**java Logic.Main** <br/>
 Similarly, you can use any editor and build/compile the Main.java class. Afterwards, the program will run and a window displaying the game will be shown on your screen.
 
 **System Requirements**
