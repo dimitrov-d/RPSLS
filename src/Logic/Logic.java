@@ -119,6 +119,7 @@ public class Logic
 	public static void playGame(Player[] player, int numGames)
 	{
 		resetTies();
+		resetScores(player);
 		for (int i = 0; i < player.length; i++)
 			for (int j = 0; j < player.length; j++)
 				for (int z = 0; z < numGames; z++)
@@ -142,5 +143,10 @@ public class Logic
 	private static void resetTies()
 	{
 		ties = 0;
+	}
+
+	private static void resetScores(Player[] players)
+	{
+		Arrays.asList(players).stream().forEach(p -> p.setScore(0));
 	}
 }

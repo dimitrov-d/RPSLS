@@ -22,7 +22,7 @@ public class Player
 	{
 		return element;
 	}
-	
+
 	public void setElement(Element el)
 	{
 		element = el;
@@ -33,5 +33,9 @@ public class Player
 		return score;
 	}
 
+	public void setScore(int score)
+	{
+		this.score = score;
+	}
 
 }

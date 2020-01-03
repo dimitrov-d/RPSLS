@@ -2,6 +2,12 @@ package Utility;
 
 public abstract class Hyperlinks
 {
+	
+	private Hyperlinks()
+	{
+		throw new IllegalStateException("Utility class");
+	} 
+	
 	// Used to define constants for hyperlinks of the images
 	
 	public static final String BACKGROUND = "https://image.freepik.com/free-photo/old-wooden-texture-background-vintage_55716-1138.jpg";
