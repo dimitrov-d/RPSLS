@@ -1,5 +1,6 @@
 package Windows;
 
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import Logic.Logic;
@@ -124,18 +125,17 @@ public class TestWindow
 				playerLabels[i].setTextFill(Color.GREEN);
 				playerLabels[i].setBackground(
 						new Background(new BackgroundFill(Color.ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+				break;
 			}
 		}
 	}
-	
+
 	private static void initiatePlayers(Player[] players, int numGames)
 	{
 		for (int i = 0; i < players.length; i++)
 			players[i] = new Player();
 
 		long start = System.currentTimeMillis();
-		Logic.playGame(players, numGames);
-
 		while (equalScoreExists())
 			Logic.playGame(players, numGames);
 
@@ -158,17 +158,20 @@ public class TestWindow
 
 	private static boolean equalScoreExists()
 	{
+		var set = new HashSet<Integer>();
 		for (int i = 0; i < players.length; i++)
-			for (int j = i + 1; j < players.length; j++)
-				if (players[j].getScore() == players[i].getScore())
-					return true;
+		{
+			if (set.contains(players[i].getScore()))
+				return true;
+			set.add(players[i].getScore());
+
+		}
+
 		return false;
 	}
 
-
 	private static Optional<String> validateInput(Optional<String> input)
 	{
-
 		while (!input.get().matches("^\\d+$")) // Only numbers and non-empty input
 		{
 			dialog.setHeaderText("Please enter a valid number!");
