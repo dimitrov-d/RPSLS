@@ -69,7 +69,7 @@ public class TestWindow
 		GridPane.setMargin(total, new Insets(10, 0, 0, 20));
 
 		Label max = JavaFXHelper
-				.makeLabel("Maximum number of wins per player: " + (5 * Integer.parseInt(numGames.get())), 20);
+				.makeLabel("Maximum number of wins per player: " + (8 * Integer.parseInt(numGames.get())), 20);
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));

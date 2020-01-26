@@ -106,7 +106,10 @@ public class Logic
 	public static void getWinnerPlayer(Player p1, Player p2)
 	{
 		if (p1.getElement() == p2.getElement())
+		{
+			ties++;
 			return;
+		}
 
 		if (p1.getElement() == getWinnerElement(p1.getElement(), p2.getElement()))
 			p1.incrementScore();
@@ -115,24 +118,27 @@ public class Logic
 	}
 
 	// Total number of games: 5 * 4 * number_of_games
-	// Maximum number of wins: 5 * number_of_games
+	// Maximum number of wins: 8 * number_of_games (4 * number_of_games + 4 *
+	// number_of_games)
 	public static void playGame(Player[] player, int numGames)
 	{
 		resetTies();
 		resetScores(player);
+
 		for (int i = 0; i < player.length; i++)
+		{
 			for (int j = 0; j < player.length; j++)
+			{
+				if (i == j)
+					continue;
+
 				for (int z = 0; z < numGames; z++)
 				{
-					if (i == j)
-						break;
-
-					if (player[i].getElement() == player[j].getElement())
-						ties++;
-
 					getWinnerPlayer(player[i], player[j]);
 					randomizePlayers(player);
 				}
+			}
+		}
 	}
 
 	public static int getTies()
