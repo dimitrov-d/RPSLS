@@ -127,11 +127,8 @@ public class Logic
 
 		for (int i = 0; i < player.length; i++)
 		{
-			for (int j = 0; j < player.length; j++)
+			for (int j = i+1; j < player.length; j++)
 			{
-				if (i == j)
-					continue;
-
 				for (int z = 0; z < numGames; z++)
 				{
 					getWinnerPlayer(player[i], player[j]);

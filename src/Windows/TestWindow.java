@@ -62,14 +62,14 @@ public class TestWindow
 		GridPane.setHalignment(number, HPos.LEFT);
 		GridPane.setMargin(number, new Insets(-30, 0, 0, 20));
 
-		Label total = JavaFXHelper.makeLabel("Total number of games: " + (5 * 4 * Integer.parseInt(numGames.get())),
+		Label total = JavaFXHelper.makeLabel("Total number of games: " + (5 * 2 * Integer.parseInt(numGames.get())),
 				20);
 		gridPane.add(total, 0, 0);
 		GridPane.setHalignment(total, HPos.LEFT);
 		GridPane.setMargin(total, new Insets(10, 0, 0, 20));
 
 		Label max = JavaFXHelper
-				.makeLabel("Maximum number of wins per player: " + (8 * Integer.parseInt(numGames.get())), 20);
+				.makeLabel("Maximum number of wins per player: " + (4 * Integer.parseInt(numGames.get())), 20);
 		gridPane.add(max, 0, 0);
 		GridPane.setHalignment(max, HPos.LEFT);
 		GridPane.setMargin(max, new Insets(50, 0, 0, 20));
