@@ -117,9 +117,8 @@ public class Logic
 			p2.incrementScore();
 	}
 
-	// Total number of games: 5 * 4 * number_of_games
-	// Maximum number of wins: 8 * number_of_games (4 * number_of_games + 4 *
-	// number_of_games)
+	// Total number of games: 5 * 2 * number_of_games
+	// Maximum number of wins: 4 * number_of_games 
 	public static void playGame(Player[] player, int numGames)
 	{
 		resetTies();
