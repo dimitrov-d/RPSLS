@@ -136,7 +136,7 @@ public class TestWindow
 			players[i] = new Player();
 
 		long start = System.currentTimeMillis();
-		while (equalScoreExists())
+		while (maxScoreTieExists(players))
 			Logic.playGame(players, numGames);
 
 		// Round runtime from milliseconds to seconds
@@ -156,18 +156,33 @@ public class TestWindow
 		return ("Score: " + maxScore);
 	}
 
-	private static boolean equalScoreExists()
+	public static boolean maxScoreTieExists(Player[] players)
 	{
 		var set = new HashSet<Integer>();
+		if (players[0] == null)
+			return true;
 		for (int i = 0; i < players.length; i++)
 		{
-			if (set.contains(players[i].getScore()))
+			int score = players[i].getScore();
+			int maxScore = getMaxScore(players);
+
+			if (score == maxScore && set.contains(score))
 				return true;
-			set.add(players[i].getScore());
 
+			set.add(score);
 		}
-
 		return false;
+	}
+	
+	private static int getMaxScore(Player[] players)
+	{
+		int maxScore = 0;
+
+		for (int i = 0; i < players.length; i++)
+			if (maxScore < players[i].getScore())
+				maxScore = players[i].getScore();
+
+		return maxScore;
 	}
 
 	private static Optional<String> validateInput(Optional<String> input)
